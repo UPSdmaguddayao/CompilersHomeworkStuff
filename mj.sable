@@ -1,0 +1,233 @@
+Package MiniJava;
+
+Helpers
+    digit = ['0'..'9'];
+    alpha = ['a'..'z'] | ['A'..'Z'];
+    tab = 9;
+    cr = 10;
+    lf = 13;
+    allchar = [' '..'~'];       // All digits, letters, punctuation
+    eol = cr | lf;
+    white = ' ' | tab | eol;
+    not_star = [allchar - '*'] | white;
+    not_slash = [allchar - '/'] | white;
+    not_star_or_slash = [allchar - ['*' + '/']] | eol;
+    
+Tokens
+    plus = '+';
+    minus = '-';
+    star = '*';
+    not = '!';
+    and = '&&';
+    lt = '<';
+    asmt = '=';
+    equals = '==';
+    comma = ',';
+    semi = ';';
+    dot = '.';
+    lparen = '(';
+    rparen = ')';
+    lbracket = '[';
+    rbracket = ']';
+    lbrace = '{';
+    rbrace = '}';
+    boolean = 'boolean';
+    clas = 'class';
+    else = 'else';
+    extends = 'extends';
+    false = 'false';
+    if = 'if';
+    int = 'int';
+    length = 'length';
+    main = 'main';
+    new = 'new';
+    public = 'public';
+    return = 'return';
+    static = 'static';
+    string = 'String';
+    print = 'System.out.println';
+    this = 'this';
+    true = 'true';
+    void = 'void';
+    while = 'while';
+    id = (alpha) ((alpha) | (digit) | '_')*;
+    num = (['1'..'9']digit*) | '0';
+    whitespace = white+;
+    block_comment = '/*' not_star+ '*'+ (not_star_or_slash not_star* '*'+)* '/';
+    eol_comment = '//' (allchar | tab)* eol;
+
+Ignored Tokens
+    whitespace,
+    block_comment,
+    eol_comment;
+
+Productions
+	//PROGRAM
+     prog {-> program} = {program}    moreclassdecl						{-> New program([moreclassdecl.class_decl])};
+	 
+	//CLASS_DECL
+    classdecl  {-> class_decl} = 	{main} clas [classid]:id [clsbracel]:lbrace 
+						public static void main lparen string lbracket rbracket [args]:id rparen 
+						[mnbracel]:lbrace stm [mainbracer]:rbrace 
+						moreclassdecl 
+						[clsbracer]:rbrace		{-> New class_decl.main(classid, stm.stmt)};
+
+	otherclassdecl {-> class_decl} = {base} clas id lbrace morevardec moremethdec rbrace							{-> New class_decl.base(id, [morevardec.var_decl], [moremethdec.method])}
+				|		{sub} clas id  extends [extend]:id lbrace morevardec moremethdec rbrace	{-> New class_decl.sub(id, extend, [morevardec.var_decl], [moremethdec.method])};
+
+    moreclassdecl {-> class_decl*} = {some}  classdecl classdeclrest			{-> [classdecl.class_decl,classdeclrest.class_decl]}
+                |   {one} classdecl																	{-> [classdecl.class_decl]};
+				
+	classdeclrest {-> class_decl*} = {one}	otherclassdecl						{-> [otherclassdecl.class_decl]}
+				|	{many}	otherclassdecl classdeclrest								{-> [otherclassdecl.class_decl, classdeclrest.class_decl]};
+
+				
+	//VAR_DECL		
+    vardecl {-> var_decl} =   {vardeclare}  type id semi						{-> New var_decl(type, id)};
+				
+	vardecs {-> var_decl*} = {some}	morevardec							{-> [morevardec.var_decl]}
+				|	{none}																	{-> []};
+				
+    morevardec {-> var_decl*} =   {one}  type id semi						{-> [New var_decl(type, id)]}
+                |   {many} morevardec type id semi								{-> [New var_decl(type, id), morevardec.var_decl]};
+
+				
+	//METHOD	
+    moremethdec {-> method*} =  {some}  methodrest					{-> [methodrest.method]}
+                |   {none}																	{-> []};
+				
+	methodrest {-> method*} = {one} methoddecl							{-> [methoddecl.method]}
+				|	{many}	methoddecl methodrest								{-> [methoddecl.method, methodrest.method]};
+
+    methoddecl {-> method} =    {methoddecl}  public type id lparen formallist rparen lbrace morevardec morestm return exp semi rbrace
+												{-> New method(type, id, [formallist.formal], [morevardec.var_decl], [morestm.stmt])};
+	
+	
+	//FORMAL
+    formal {-> formal} =    {one}	type id											{-> New formal(type, id)};
+	
+    formallist {-> formal*} =  {some}  formalrest								{-> [formalrest.formal]}
+                |   {none}																	{-> []};
+
+    formalrest {-> formal*} =    {one}    type id									{-> [New formal(type, id)]}
+               |   {many} 	type id comma formalrest							{-> [New formal(type, id), formalrest.formal]};
+
+			   
+	//TYPE
+    type  {-> type} =    {boolean}   boolean										{-> New type.bool()}
+        |     {intarray}  int lbracket rbracket										{-> New type.int_array()}
+        |     {int}       int																	{-> New type.int()}
+        |     {id}        id																	{-> New type.user(id)};
+	 
+
+	 //STMT
+    stm {-> stmt} =       {morestm}       lbrace morestm rbrace			{-> New stmt.block([morestm.stmt])}
+            |   {if}            if lparen exp rparen [yes]:stm else [no]:stm 	{-> New stmt.if(exp, yes.stmt, no.stmt)}
+            |   {while}         while lparen exp rparen stm						{-> New stmt.while(exp, stm.stmt)}
+            |   {print}         print lparen exp rparen semi						{-> New stmt.print(exp)}
+            |   {assign}        id asmt exp semi									{-> New stmt.asmt(id, exp)}
+            |   {assignlist}    id lbracket [idx]:exp rbracket asmt [val]:exp semi	{-> New stmt.array_asmt(id, idx.exp, val.exp)};
+			
+    morestm {-> stmt*} =     {some} stmrest									{-> [stmrest.stmt]}
+                |   {none}																	{-> []};
+				
+	stmrest {-> stmt*} =	{one} stm												{-> [stm.stmt]}
+				|	{many}	stm stmrest												{-> [stm.stmt, stmrest.stmt]};	//no comma??
+
+				
+    exp {-> exp} =     {add} exp plus expt										{-> New exp.plus(exp, expt.exp)}
+        |   {sub} 	exp minus expt													{-> New exp.minus(exp, expt.exp)}
+        |   {else} 	expt																	{-> expt.exp}
+        |   {length}        exp dot length												{-> New exp.length(exp)}
+		|   {iteminlist}		[outexp]:exp lbracket [inexp]:exp rbracket	{-> New exp.ref(outexp.exp, inexp.exp)}
+        |   {method}        exp dot id lparen explist rparen					{-> New exp.method(exp, id, [explist.exp])}
+        |   {not}           not expf														{-> New exp.not(expf.exp)}
+        |   {less}          [left]:expf lt [right]:expf									{-> New exp.lt(left.exp, right.exp)}
+        |   {and}          [left]:expf and [right]:expf								{-> New exp.and(left.exp, right.exp)};
+
+    expt {-> exp} = {mult} expt star expf										{-> New exp.times(expt.exp, expf.exp)}
+        | {terminal} expf																	{-> expf.exp};
+
+    expf {-> exp} =  {integerlit}    num											{-> New exp.num(num)}
+        |   {true}          true																{-> New exp.true()}
+        |   {false}         false															{-> New exp.false()}
+        |   {id}            id																	{-> New exp.id(id)}
+        |   {this}          this																{-> New exp.this()}
+        |   {newintlist}    new int lbracket exp rbracket						{-> New exp.alloc(exp)}
+        |   {newid}         new id lparen rparen									{-> New exp.new(id)}
+        |   {inheritexp}    lparen exp rparen										{-> exp.exp};
+
+    explist {-> exp*} =   {some}   exprest										{-> [exprest.exp]}
+            |   {none}																		{-> []};
+
+    exprest {-> exp*} =   {single}   exp											{-> [exp]}
+            |   {multiple}	exp comma exprest									{-> [exp, exprest.exp]};
+
+			
+Abstract Syntax Tree
+
+    // A program is a list of class declarations
+
+   program = class_decl*;
+    
+    // Three flavors of class declarations.  All we need to know about
+    // the main class is its name and the stmt in main's body.  For the
+    // others, we need their name, a list of their var_decls, and a list
+    // of method declarations.  (For a subclass we need to know who it
+    // extends as well.)
+    
+    class_decl = 
+          {main}    id stmt
+        | {base}    id var_decl* method*
+        | {sub}     id [extends]:id var_decl* method*;
+        
+    // For var_decls we need to know the var's type and name
+    
+   var_decl = type id;
+    
+    // Need to know a method's return type, its name, a list of
+    // arguments, and the list of stmts in its body.
+    
+    method = type id formal* var_decl* stmt*;
+    
+    formal = type id;
+    
+    // Most of the types are literals.  We only need extra info for
+    // the user-defined types -- the class name.
+    
+   type = {int} | {bool} | {int_array} | {user} id;
+    
+    // Most of these are pretty self explanatory.  Ids are variable or
+    // array names, stmts are the bodies of ifs and whiles, and exps
+    // are return values, tests, printed values, etc.
+        
+    stmt = 
+          {return}  exp
+        | {block}   stmt*
+        | {if}      exp [yes]:stmt [no]:stmt
+        | {while}   exp stmt
+        | {print}   exp
+        | {asmt}    id exp
+        | {array_asmt} id [idx]:exp [val]:exp;
+         
+    // Lots and lots of expressions.
+         
+    exp =
+          {and}     [left]:exp [right]:exp
+        | {lt}      [left]:exp [right]:exp
+        | {plus}    [left]:exp [right]:exp
+        | {minus}   [left]:exp [right]:exp
+        | {times}   [left]:exp [right]:exp
+        | {not}     exp
+        | {ref}     [name]:exp [idx]:exp        // name[idx]
+        | {length}  exp                         // exp.length()
+        | {method}  [obj]:exp id [args]:exp*    // obj.id(args)
+        | {num}     num
+        | {id}      id
+        | {true}    
+        | {false}   
+        | {this}    
+        | {alloc}   exp                         // new int[exp]
+        | {new}     id;                         // new id()
+		
+		
