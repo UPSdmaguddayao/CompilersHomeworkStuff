@@ -1,4 +1,4 @@
-Package MiniJava;
+Package minijava;
 
 Helpers
     digit = ['0'..'9'];
