@@ -69,11 +69,10 @@ Productions
     classdecl  {-> class_decl} = 	{main} clas [classid]:id [clsbracel]:lbrace 
 						public static void main lparen string lbracket rbracket [args]:id rparen 
 						[mnbracel]:lbrace stm [mainbracer]:rbrace 
-						moreclassdecl 
 						[clsbracer]:rbrace		{-> New class_decl.main(classid, stm.stmt)};
 
-	otherclassdecl {-> class_decl} = {base} clas id lbrace morevardec moremethdec rbrace							{-> New class_decl.base(id, [morevardec.var_decl], [moremethdec.method])}
-				|		{sub} clas id  extends [extend]:id lbrace morevardec moremethdec rbrace	{-> New class_decl.sub(id, extend, [morevardec.var_decl], [moremethdec.method])};
+	otherclassdecl {-> class_decl} = {base} clas id lbrace vardecs moremethdec rbrace							{-> New class_decl.base(id, [vardecs.var_decl], [moremethdec.method])}
+				|		{sub} clas id  extends [extend]:id lbrace vardecs moremethdec rbrace	{-> New class_decl.sub(id, extend, [vardecs.var_decl], [moremethdec.method])};
 
     moreclassdecl {-> class_decl*} = {some}  classdecl classdeclrest			{-> [classdecl.class_decl,classdeclrest.class_decl]}
                 |   {one} classdecl																	{-> [classdecl.class_decl]};
