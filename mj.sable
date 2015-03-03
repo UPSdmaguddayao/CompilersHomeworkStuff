@@ -98,8 +98,8 @@ Productions
 	methodrest {-> method*} = {one} methoddecl							{-> [methoddecl.method]}
 				|	{many}	methoddecl methodrest								{-> [methoddecl.method, methodrest.method]};
 
-    methoddecl {-> method} =    {methoddecl}  public type id lparen formallist rparen lbrace morevardec morestm return exp semi rbrace
-												{-> New method(type, id, [formallist.formal], [morevardec.var_decl], [morestm.stmt])};
+    methoddecl {-> method} =    {methoddecl}  public type id lparen formallist rparen lbrace vardecs morestm return exp semi rbrace
+												{-> New method(type, id, [formallist.formal], [vardecs.var_decl], [morestm.stmt])};
 	
 	
 	//FORMAL
