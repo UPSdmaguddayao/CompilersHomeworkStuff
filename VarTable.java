@@ -23,6 +23,7 @@ public class VarTable {
      */
    public VarTable(LinkedList<PVarDecl> vars) throws VarClashException {
       //TODO Fill in the guts of this method.
+       ListIterator<String> listIterator = linkedList.listIterator();
    }
    
    /** Allow the option of adding individual entries as well. */

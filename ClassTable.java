@@ -52,6 +52,12 @@ public class ClassTable {
    /** dump prints info on each of the classes in the table */
    public void dump() {
       //TODO Fill in the guts of this method.
+    for(Map.Entry<String,ClassInfo> entry: table.entrySet()){
+                    //if(name.equals(entry.getKey()))
+                    ///{
+                    System.out.println(entry.getValue().dump());
+                   //}
+                }
    }
    
       

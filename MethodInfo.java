@@ -44,6 +44,10 @@ public class MethodInfo {
                      LinkedList<PFormal> formals,
                      LinkedList<PVarDecl> locals) throws VarClashException {
       //TODO Fill in the guts of this method.
+      this.retType = retType;
+      this.name = name;
+      this.formals = formals;
+      this.locals = locals;
    }
 
    /* Accessors */   
@@ -59,7 +63,11 @@ public class MethodInfo {
     */
    public void dump() {
       //TODO Fill in the guts of this method.
-   }
+      System.out.print("Name: " + name); //HOW DO I GET ID STRING FORMAT
+      System.out.print("Return Type: " + retType); //SAME
+      //System.out.print()  //OH GOD, I DONT KNOW FORMALS EITHER
+      System.out.print("Local variables: "+ locals.dump());
+    }
    
    public void dumpIRT(boolean dot) {
       //TODO Fill in the guts of this method -- but once we get to the IRT checkpoint
