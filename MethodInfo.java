@@ -63,9 +63,14 @@ public class MethodInfo {
     */
    public void dump() {
       //TODO Fill in the guts of this method.
-      System.out.print("Name: " + name); //HOW DO I GET ID STRING FORMAT
-      System.out.print("Return Type: " + retType); //SAME
-      //System.out.print()  //OH GOD, I DONT KNOW FORMALS EITHER
+      System.out.println("Name: " + name.toString());
+      System.out.println("Return Type: " + retType.toString()); 
+      //not sure if I'm doing this right -DJ
+      System.out.println("Formals: ")
+      for(int i = 0; i < formals.size(); i++)
+      {
+        System.out.print(formals.get(i).toString() + " ");  //prints out the formals
+      }
       System.out.print("Local variables: "+ locals.dump());
     }
    

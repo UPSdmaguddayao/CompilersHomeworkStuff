@@ -38,8 +38,7 @@ public class VarTable {
    
    /** Lookup and return the type of a variable */
    public PType get(String name) {
-      //TODO Fill in the guts of this method.
-      return null;  // So things will compile for now...
+      return table.get(name).getType(); 
    }
    
    /** Lookup and return a variable's VarInfo record */

@@ -27,6 +27,12 @@ public class MethodTable {
     */
    public MethodTable(LinkedList<PMethod> methods) throws Exception {
       //TODO Fill in the guts of this method.
+    //WORK ON THIS.  DONT KNOW WHAT PMETHODS GIVES ME
+      String name = "";
+      for(int i = 0; i < methods.size(); i++)
+      {
+        put(methods.get(i).)
+      }
    }
    
    /** 
@@ -43,7 +49,8 @@ public class MethodTable {
    public void put(TId id, PType retType, 
                    LinkedList<PFormal> formals,
                    LinkedList<PVarDecl> locals) throws Exception {
-      //TODO Fill in the guts of this method.
+      String name = id.getText();
+      table.put(name, new MethodInfo(retType,name,formals,locals));
    }
    
    /** Lookup and return the MethodInfo for the specified method */
@@ -62,6 +69,10 @@ public class MethodTable {
     */
    public void dump() {
       //TODO Fill in the guts of this method.
+      for(Map.Entry<String,ClassInfo> entry: table.entrySet())
+      {
+         System.out.println(entry.getValue().dump());
+      }
    }
    
    public void dumpIRT(boolean dot) {

@@ -60,13 +60,13 @@ public class ClassInfo {
    public MethodTable getMethodTable() { return methods; }
    
    public void dump() {
-		System.out.print("Class Name: " + className ); //how do I get a string from TID?
+		System.out.println("Class Name: " + className.toString() ); 
     if(superClass != null)
     {
-      System.out.print(" Superclass Name: " + superClass); //SOMEONE HELP
+      System.out.print(" Superclass Name: " + superClass.toString()); 
     }
-    System.out.print("Variable: " + vars.dump);
-    System.out.print("Methods: " + methods.dump);
+    System.out.println("Variable: " + vars.dump);
+    System.out.println("Methods: " + methods.dump);
    } 
    
    public void dumpIRT(boolean dot) {
