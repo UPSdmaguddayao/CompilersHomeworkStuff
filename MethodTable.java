@@ -26,12 +26,13 @@ public class MethodTable {
     * @param methods A list of PMethod nodes
     */
    public MethodTable(LinkedList<PMethod> methods) throws Exception {
-      //TODO Fill in the guts of this method.
-    //WORK ON THIS.  DONT KNOW WHAT PMETHODS GIVES ME
+    //Check AMethod
       String name = "";
+      PMethod temp = null;
       for(int i = 0; i < methods.size(); i++)
       {
-        put(methods.get(i).)
+        temp = methods.get(i);
+        put(temp.getId(),temp.getType(),temp.getFormal(),temp.getVarDecl())); //let errors be handled by the put method
       }
    }
    
@@ -50,7 +51,11 @@ public class MethodTable {
                    LinkedList<PFormal> formals,
                    LinkedList<PVarDecl> locals) throws Exception {
       String name = id.getText();
-      table.put(name, new MethodInfo(retType,name,formals,locals));
+       if (table.containsKey(name)) {
+        String msg = name + " redeclared on line " + id.getLine();
+        throw new MethodClashException(msg); // There was a clash
+      }
+      table.put(name, new MethodInfo(retType,name,formals,locals)); //this is where VarClashExceptions will occur
    }
    
    /** Lookup and return the MethodInfo for the specified method */

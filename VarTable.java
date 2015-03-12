@@ -22,8 +22,12 @@ public class VarTable {
     * @param vars  A list of PVarDecl nodes from our AST.
      */
    public VarTable(LinkedList<PVarDecl> vars) throws VarClashException {
-      //TODO Fill in the guts of this method.
-       ListIterator<String> listIterator = linkedList.listIterator();
+      PVarDecl temp = null;
+       for(int i = 0; i < vars.size(); i++)
+       {
+          temp = vars.get(i);
+          put(temp.getId(),temp.getType()); //VarClashes will be done in the put method
+       }
    }
    
    /** Allow the option of adding individual entries as well. */
@@ -56,7 +60,10 @@ public class VarTable {
    
    /** Print out the entire contents of the table */
    public void dump() {
-      //TODO Fill in the guts of this method.
+      for(Map.Entry<String,ClassInfo> entry: table.entrySet())
+      {
+         System.out.println(entry + " "+ entry.getValue().toString());
+      }
    }
    
    public void dumpIRT(boolean dot) {

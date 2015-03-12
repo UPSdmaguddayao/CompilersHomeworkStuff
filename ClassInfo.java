@@ -51,7 +51,7 @@ public class ClassInfo {
       this.className = className;
       this.superClass = superClass;
       this.vars = new VarTable(vars);           // Populate table from list
-      this.methods = new MethodTable(methods);  // Ditto.
+      this.methods = new MethodTable(methods);  // Ditto.  All errors will pass through these two methods back up
    }
    
    public TId getName() { return className; }
@@ -65,8 +65,8 @@ public class ClassInfo {
     {
       System.out.print(" Superclass Name: " + superClass.toString()); 
     }
-    System.out.println("Variable: " + vars.dump);
-    System.out.println("Methods: " + methods.dump);
+    System.out.println("Variable: " + vars.dump());
+    System.out.println("Methods: " + methods.dump());
    } 
    
    public void dumpIRT(boolean dot) {

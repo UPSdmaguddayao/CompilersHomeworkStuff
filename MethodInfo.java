@@ -43,11 +43,10 @@ public class MethodInfo {
    public MethodInfo(PType retType, TId name,
                      LinkedList<PFormal> formals,
                      LinkedList<PVarDecl> locals) throws VarClashException {
-      //TODO Fill in the guts of this method.
       this.retType = retType;
       this.name = name;
       this.formals = formals;
-      this.locals = locals;
+      locals = new VarTable(locals);
    }
 
    /* Accessors */   
@@ -62,14 +61,13 @@ public class MethodInfo {
     * necessary, and we'll want to see exactly what's in the VarTable.
     */
    public void dump() {
-      //TODO Fill in the guts of this method.
       System.out.println("Name: " + name.toString());
       System.out.println("Return Type: " + Types.toStr(retType); //use the type class to get the type 
-      //not sure if I'm doing this right -DJ
+      //not sure if I'm doing this loop right -DJ
       System.out.println("Formals: ")
       for(int i = 0; i < formals.size(); i++)
       {
-        System.out.print(formals.get(i).toString() + " ");  //prints out the formals <---PFormals extends Node, not Token.  So I don't know what it
+        System.out.print(formals.get(i).toString() + " ");  //prints out the formals <---Note, pay attention to AFormals, not PFormals.  It has a toString Method
       }
       System.out.print("Local variables: "+ locals.dump());
     }

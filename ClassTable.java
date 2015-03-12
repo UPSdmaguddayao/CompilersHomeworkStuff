@@ -33,6 +33,10 @@ public class ClassTable {
                    LinkedList<PMethod> methods) throws Exception {
       String name = id.getText();
       //TODO Fill in the guts of this method.
+       if (table.containsKey(name)) {
+        String msg = name + " redeclared on line " + id.getLine();
+        throw new ClassClashException(msg); // There was a clash
+      }
       table.put(name, new ClassInfo(id,extendsId,vars,methods)); //creates a new classinfo and places it inside the table
    }
    
@@ -52,7 +56,6 @@ public class ClassTable {
    
    /** dump prints info on each of the classes in the table */
    public void dump() {
-      //TODO Fill in the guts of this method.
     for(Map.Entry<String,ClassInfo> entry: table.entrySet())
       {
          System.out.println(entry.getValue().dump());
