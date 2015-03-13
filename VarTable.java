@@ -1,4 +1,4 @@
-package symtable;  
+package symtable; 
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -21,8 +21,8 @@ public class VarTable {
     * Constructor populates table from an initial list of VarDecls.
     * @param vars  A list of PVarDecl nodes from our AST.
      */
-   public VarTable(LinkedList<AVarDecl> vars) throws VarClashException {
-      AVarDecl temp = null;
+   public VarTable(LinkedList<PVarDecl> vars) throws VarClashException {
+      PVarDecl temp = null;
        for(int i = 0; i < vars.size(); i++)
        {
           temp = vars.get(i);
@@ -62,8 +62,7 @@ public class VarTable {
    
    /** Print out the entire contents of the table */
    public void dump() {
-       //Entry is a protected class within HashMap, so we're not allowed to access it
-      for(HashMap.Entry<String,ClassInfo> entry: table.entrySet())
+      for(Map.Entry<String,ClassInfo> entry: table.entrySet())
       {
          System.out.println(entry + " "+ entry.getValue().toString());
       }
