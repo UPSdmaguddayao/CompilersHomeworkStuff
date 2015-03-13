@@ -65,8 +65,10 @@ public class ClassInfo {
     {
       System.out.print(" Superclass Name: " + superClass.toString()); 
     }
-    System.out.println("Variable: " + vars.dump());
-    System.out.println("Methods: " + methods.dump());
+    System.out.println("Variable: ");
+	vars.dump()
+    System.out.println("Methods: ");
+	methods.dump()
    } 
    
    public void dumpIRT(boolean dot) {

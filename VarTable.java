@@ -3,6 +3,7 @@ package symtable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Set;
+import java.util.Map;
 
 import minijava.node.AVarDecl;
 import minijava.node.PType;

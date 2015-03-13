@@ -3,6 +3,7 @@ package symtable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Set;
+import java.util.Map;
 
 import minijava.node.PMethod;
 import minijava.node.PVarDecl;
@@ -58,7 +59,7 @@ public class ClassTable {
    public void dump() {
     for(Map.Entry<String,ClassInfo> entry: table.entrySet())
       {
-         System.out.println(entry.getValue().dump());
+         entry.getValue().dump();
       }
    }
    
