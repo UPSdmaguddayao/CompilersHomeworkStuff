@@ -26,6 +26,11 @@ public class SymTableVisitor extends DepthFirstAdapter
       for (int i = 0; i < depth; i++) out.write("   ");
    }
    
+   /** Constructor takes a PrintWriter, and stores in instance var. */
+   public SymTableVisitor() {
+      this.out = new PrintWriter(System.out);
+   }
+   
    /** getTable returns the entire table */
    public ClassTable getTable() {
       return table;
@@ -37,7 +42,8 @@ public class SymTableVisitor extends DepthFirstAdapter
    public void caseAMainClassDecl(AMainClassDecl node)
    {
       inAMainClassDecl(node);
-      indent(); out.print("class ");
+      indent();
+      out.print("class ");
       depth++;
       if(node.getId() != null)
       {
