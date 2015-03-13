@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=type
+comment0.target=java.lang.String\ toStr(minijava.node.PType)
+comment0.text=\r\n\ Converts\ a\ type\ descriptor\ from\ our\ AST\ to\ its\ string\ representation.\r\n\ @param\ type\ \ A\ PType\ node\ from\ the\ AST\r\n\ @return\ \ The\ corresponding\ type\ string\r\n
+comment1.params=t1\ t2
+comment1.target=boolean\ sameType(minijava.node.PType,\ minijava.node.PType)
+comment1.text=\r\n\ Returns\ true\ if\ the\ two\ type\ descriptors\ have\ the\ same\ type.\ \ It\r\n\ converts\ both\ to\ their\ string\ representations\ and\ compares\ the\r\n\ two\ strings.\r\n\ @param\ t1\ \ The\ first\ type\ descriptor\r\n\ @param\ t2\ \ The\ second\ type\ descriptor\r\n\ @return\ \ True\ if\ the\ types\ are\ the\ same,\ false\ otherwise.\r\n
+numComments=2

@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.params=methods
+comment0.target=MethodTable(java.util.LinkedList)
+comment0.text=\ \r\n\ The\ constructor\ is\ passed\ a\ list\ of\ PMethod\ nodes\ as\ constructed\r\n\ by\ the\ parser.\ \ It\ adds\ entries\ for\ each\ method\ in\ the\ list\ via\ \r\n\ the\ local\ put()\ method.\ \r\n\ @param\ methods\ A\ list\ of\ PMethod\ nodes\r\n
+comment1.params=id\ retType\ formals\ locals
+comment1.target=void\ put(minijava.node.TId,\ minijava.node.PType,\ java.util.LinkedList,\ java.util.LinkedList)
+comment1.text=\ \r\n\ This\ method\ adds\ a\ single\ entry\ to\ the\ table,\ with\ the\ method\ name\ as\ \r\n\ key\ and\ the\ appropriate\ MethodInfo\ structure\ as\ value.\ \ If\ the\ method\ \r\n\ name\ already\ appears\ in\ the\ table,\ it\ should\ throw\ a\ MethodClashException.\ \ \r\n\ We\ might\ also\ encounter\ a\ VarClashException\ while\ building\ the\ MethodInfo\ \r\n\ structure,\ so\ either\ could\ be\ thrown\ by\ put().\r\n\ @param\ id\ \ \ The\ method's\ name\ (a\ TId,\ not\ a\ String)\r\n\ @param\ retType\ \ The\ method's\ return\ type\r\n\ @param\ formals\ \ A\ list\ of\ the\ method's\ formal\ variables\ (params)\r\n\ @param\ locals\ \ \ A\ list\ of\ the\ method's\ local\ variables\r\n
+comment2.params=name
+comment2.target=MethodInfo\ get(java.lang.String)
+comment2.text=Lookup\ and\ return\ the\ MethodInfo\ for\ the\ specified\ method
+comment3.params=
+comment3.target=java.util.Set\ getMethodNames()
+comment3.text=Return\ all\ method\ names\ in\ the\ table
+comment4.params=
+comment4.target=void\ dump()
+comment4.text=\ \r\n\ Print\ out\ info\ on\ all\ methods\ in\ the\ table.\ \ Don't\ forget\ that\r\n\ MethodInfo\ structures\ already\ know\ how\ to\ dump\ themselves.\r\n
+comment5.params=dot
+comment5.target=void\ dumpIRT(boolean)
+numComments=6

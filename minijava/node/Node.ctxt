@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.params=
+comment0.target=java.lang.Object\ clone()
+comment1.params=
+comment1.target=Node\ parent()
+comment2.params=parent
+comment2.target=void\ parent(Node)
+comment3.params=child
+comment3.target=void\ removeChild(Node)
+comment4.params=oldChild\ newChild
+comment4.target=void\ replaceChild(Node,\ Node)
+comment5.params=node
+comment5.target=void\ replaceBy(Node)
+comment6.params=node
+comment6.target=java.lang.String\ toString(Node)
+comment7.params=list
+comment7.target=java.lang.String\ toString(java.util.List)
+comment8.params=node
+comment8.target=Node\ cloneNode(Node)
+comment9.params=list
+comment9.target=java.util.List\ cloneList(java.util.List)
+numComments=10

@@ -23,10 +23,10 @@ public class VarTable {
     * @param vars  A list of PVarDecl nodes from our AST.
      */
    public VarTable(LinkedList<PVarDecl> vars) throws VarClashException {
-      PVarDecl temp = null;
+      AVarDecl temp = null;
        for(int i = 0; i < vars.size(); i++)
        {
-          temp = vars.get(i);
+          temp = (AVarDecl) vars.get(i);
           //temp is a PVarDecl, but PVarDecl's extend Node, which has no "getID()"
           // AVarDecl's do, but I dunno if that's what we want?
           put(temp.getId(),temp.getType()); //VarClashes will be done in the put method
@@ -63,7 +63,7 @@ public class VarTable {
    
    /** Print out the entire contents of the table */
    public void dump() {
-      for(Map.Entry<String,ClassInfo> entry: table.entrySet())
+      for(Map.Entry<String,VarInfo> entry: table.entrySet())
       {
          System.out.println(entry + " "+ entry.getValue().toString());
       }

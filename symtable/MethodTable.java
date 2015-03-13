@@ -29,10 +29,10 @@ public class MethodTable {
    public MethodTable(LinkedList<PMethod> methods) throws Exception {
     //Check AMethod
       String name = "";
-      PMethod temp = null;
+      AMethod temp = null;
       for(int i = 0; i < methods.size(); i++)
       {
-        temp = methods.get(i);
+        temp = (AMethod)methods.get(i);
         put(temp.getId(),temp.getType(),temp.getFormal(),temp.getVarDecl()); //let errors be handled by the put method
       }
    }
@@ -56,7 +56,7 @@ public class MethodTable {
         String msg = name + " redeclared on line " + id.getLine();
         throw new MethodClashException(msg); // There was a clash
       }
-      table.put(name, new MethodInfo(retType,name,formals,locals)); //this is where VarClashExceptions will occur
+      table.put(name, new MethodInfo(retType,id,formals,locals)); //this is where VarClashExceptions will occur
    }
    
    /** Lookup and return the MethodInfo for the specified method */
@@ -75,9 +75,9 @@ public class MethodTable {
     */
    public void dump() {
       //TODO Fill in the guts of this method.
-      for(Map.Entry<String,ClassInfo> entry: table.entrySet())
+      for(Map.Entry<String,MethodInfo> entry: table.entrySet())
       {
-         entry.getValue().dump()
+         entry.getValue().dump();
       }
    }
    

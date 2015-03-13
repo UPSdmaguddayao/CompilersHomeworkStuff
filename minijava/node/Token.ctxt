@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=java.lang.String\ getText()
+comment1.params=text
+comment1.target=void\ setText(java.lang.String)
+comment2.params=
+comment2.target=int\ getLine()
+comment3.params=line
+comment3.target=void\ setLine(int)
+comment4.params=
+comment4.target=int\ getPos()
+comment5.params=pos
+comment5.target=void\ setPos(int)
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment7.params=child
+comment7.target=void\ removeChild(Node)
+comment8.params=oldChild\ newChild
+comment8.target=void\ replaceChild(Node,\ Node)
+numComments=9

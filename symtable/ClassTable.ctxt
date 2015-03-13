@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.params=id\ extendsId\ vars\ methods
+comment0.target=void\ put(minijava.node.TId,\ minijava.node.TId,\ java.util.LinkedList,\ java.util.LinkedList)
+comment0.text=\ \r\n\ This\ method\ adds\ a\ new\ table\ entry\ for\ class\ "id".\ \ It\ will\ throw\ a\r\n\ ClassClashException\ if\ the\ new\ class\ name\ is\ already\ in\ the\ table,\r\n\ and\ might\ also\ pass\ along\ Var\ or\ Method\ clash\ exceptions\ encountered\r\n\ while\ processing\ the\ lists\ of\ instance\ variables\ and\ methods.\ \ (This\r\n\ method\ doesn't\ inspect\ the\ lists,\ but\ the\ constructor\ for\ ClassInfo\r\n\ does.)\r\n\ \r\n\ @param\ id\ \ \ \ \ \ \ \ \ The\ name\ of\ the\ class\ (a\ TId,\ not\ a\ String)\r\n\ @param\ extendsId\ \ The\ name\ of\ its\ superclass\ (or\ null)\r\n\ @param\ vars\ \ \ \ \ \ \ A\ list\ of\ the\ class's\ instance\ variables\r\n\ @param\ methods\ \ \ \ A\ list\ of\ the\ methods\ in\ the\ class\r\n
+comment1.params=className\ methodName
+comment1.target=void\ putMain(java.lang.String,\ java.lang.String)
+comment2.params=id
+comment2.target=ClassInfo\ get(java.lang.String)
+comment2.text=Lookup\ and\ return\ the\ ClassInfo\ record\ for\ the\ specified\ class
+comment3.params=
+comment3.target=java.util.Set\ getClassNames()
+comment3.text=Return\ all\ method\ names\ in\ the\ table
+comment4.params=
+comment4.target=void\ dump()
+comment4.text=dump\ prints\ info\ on\ each\ of\ the\ classes\ in\ the\ table
+comment5.params=dot
+comment5.target=void\ dumpIRT(boolean)
+comment5.text=\ dump\ prints\ info\ on\ each\ of\ the\ classes\ in\ the\ table\ and\ \r\n\ displays\ IRT\ info\ as\ well.\ \r\n\ @param\ dot\tAre\ we\ generating\ output\ for\ dot?\r\n
+numComments=6

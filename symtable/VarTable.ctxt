@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.params=vars
+comment0.target=VarTable(java.util.LinkedList)
+comment0.text=\ \r\n\ Constructor\ populates\ table\ from\ an\ initial\ list\ of\ VarDecls.\r\n\ @param\ vars\ \ A\ list\ of\ PVarDecl\ nodes\ from\ our\ AST.\r\n
+comment1.params=id\ type
+comment1.target=void\ put(minijava.node.TId,\ minijava.node.PType)
+comment1.text=Allow\ the\ option\ of\ adding\ individual\ entries\ as\ well.
+comment2.params=name
+comment2.target=minijava.node.PType\ get(java.lang.String)
+comment2.text=Lookup\ and\ return\ the\ type\ of\ a\ variable
+comment3.params=name
+comment3.target=VarInfo\ getInfo(java.lang.String)
+comment3.text=Lookup\ and\ return\ a\ variable's\ VarInfo\ record
+comment4.params=
+comment4.target=java.util.Set\ getVarNames()
+comment4.text=Return\ all\ var\ names\ in\ the\ table
+comment5.params=
+comment5.target=int\ size()
+comment5.text=Returns\ the\ number\ of\ entries\ in\ the\ table
+comment6.params=
+comment6.target=void\ dump()
+comment6.text=Print\ out\ the\ entire\ contents\ of\ the\ table
+comment7.params=dot
+comment7.target=void\ dumpIRT(boolean)
+numComments=8

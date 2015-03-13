@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=className\ superClass\ vars\ methods
+comment0.target=ClassInfo(minijava.node.TId,\ minijava.node.TId,\ java.util.LinkedList,\ java.util.LinkedList)
+comment0.text=\ \r\n\ The\ constructor\ takes\ all\ info\ associated\ with\ a\ subclass\ definition,\r\n\ but\ can\ be\ passed\ null\ for\ unused\ fields\ in\ the\ case\ of\ a\ base\ or\ main\r\n\ class\ declaration.\ \ Names\ are\ passed\ as\ TId\ rather\ than\ String\ so\ we\ \r\n\ can\ retrieve\ line\ number,\ etc,\ from\ the\ token\ if\ necessary.\r\n\ @param\ className\ \ The\ name\ of\ the\ class\r\n\ @param\ superClass\ The\ name\ of\ its\ superclass\r\n\ @param\ vars\ \ \ \ \ \ \ A\ list\ of\ all\ instance\ vars\ in\ the\ class\r\n\ @param\ methods\ \ \ \ A\ list\ of\ method\ descriptors\r\n
+comment1.params=
+comment1.target=minijava.node.TId\ getName()
+comment2.params=
+comment2.target=minijava.node.TId\ getSuper()
+comment3.params=
+comment3.target=VarTable\ getVarTable()
+comment4.params=
+comment4.target=MethodTable\ getMethodTable()
+comment5.params=
+comment5.target=void\ dump()
+comment6.params=dot
+comment6.target=void\ dumpIRT(boolean)
+numComments=7

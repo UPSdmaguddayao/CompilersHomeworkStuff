@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.params=retType\ name\ formals\ locals
+comment0.target=MethodInfo(minijava.node.PType,\ minijava.node.TId,\ java.util.LinkedList,\ java.util.LinkedList)
+comment0.text=\ \r\n\ The\ constructor\ stores\ away\ references\ to\ the\ return\ type\ and\ formals,\r\n\ and\ builds\ a\ VarTable\ containing\ both\ the\ local\ variables\ and\ the\ \r\n\ formals.\ \ If\ variable\ name\ clashes\ are\ found\ (within\ locals,\ formals,\r\n\ or\ across\ locals\ and\ formals)\ we\ throw\ a\ VarClashException.\r\n\ @param\ retType\ \ The\ method's\ return\ type\r\n\ @param\ name\ \ \ \ \ The\ method's\ name\ (a\ TId,\ not\ a\ String)\r\n\ @param\ formals\ \ A\ list\ of\ the\ method's\ formal\ variables\ (params)\r\n\ @param\ locals\ \ \ A\ list\ of\ the\ method's\ local\ variables\r\n
+comment1.params=
+comment1.target=minijava.node.TId\ getName()
+comment1.text=Accessors
+comment2.params=
+comment2.target=minijava.node.PType\ getRetType()
+comment3.params=
+comment3.target=java.util.LinkedList\ getFormals()
+comment4.params=
+comment4.target=VarTable\ getLocals()
+comment5.params=
+comment5.target=void\ dump()
+comment5.text=\ Print\ info\ about\ the\ return\ type,\ formals,\ and\ local\ variables.\r\n\ It's\ OK\ if\ the\ formals\ appear\ in\ the\ local\ table\ as\ well.\ \ In\ fact,\r\n\ it's\ a\ <i>good</i>\ thing\ since\ this\ output\ will\ help\ us\ debug\ later\ if\ \r\n\ necessary,\ and\ we'll\ want\ to\ see\ exactly\ what's\ in\ the\ VarTable.\r\n
+comment6.params=dot
+comment6.target=void\ dumpIRT(boolean)
+numComments=7
