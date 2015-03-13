@@ -1,4 +1,4 @@
-package symtable;
+package symtable; 
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -32,7 +32,7 @@ public class MethodTable {
       for(int i = 0; i < methods.size(); i++)
       {
         temp = methods.get(i);
-        put(temp.getId(),temp.getType(),temp.getFormal(),temp.getVarDecl())); //let errors be handled by the put method
+        put(temp.getId(),temp.getType(),temp.getFormal(),temp.getVarDecl()); //let errors be handled by the put method
       }
    }
    

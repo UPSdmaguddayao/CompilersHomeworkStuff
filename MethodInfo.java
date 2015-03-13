@@ -1,4 +1,4 @@
-package symtable;
+package symtable; 
 
 import java.util.LinkedList;
 
@@ -46,7 +46,7 @@ public class MethodInfo {
       this.retType = retType;
       this.name = name;
       this.formals = formals;
-      locals = new VarTable(locals);
+      this.locals = new VarTable(locals);
    }
 
    /* Accessors */   
@@ -62,14 +62,15 @@ public class MethodInfo {
     */
    public void dump() {
       System.out.println("Name: " + name.toString());
-      System.out.println("Return Type: " + Types.toStr(retType); //use the type class to get the type 
+      System.out.println("Return Type: " + Types.toStr(retType)); //use the type class to get the type 
       //not sure if I'm doing this loop right -DJ
-      System.out.println("Formals: ")
+      System.out.println("Formals: ");
       for(int i = 0; i < formals.size(); i++)
       {
         System.out.print(formals.get(i).toString() + " ");  //prints out the formals <---Note, pay attention to AFormals, not PFormals.  It has a toString Method
       }
-      System.out.print("Local variables: "+ locals.dump());
+      System.out.print("Local variables: ");
+      locals.dump();
     }
    
    public void dumpIRT(boolean dot) {
