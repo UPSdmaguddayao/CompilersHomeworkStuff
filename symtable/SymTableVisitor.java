@@ -22,12 +22,6 @@ public class SymTableVisitor extends DepthFirstAdapter
    private int depth = -2;   // Start at -2 so Program->ClassDecl puts back to 0
    private PrintWriter out;
    
-   /** Constructor takes a PrintWriter, and stores in instance var. */
-   public SymTableVisitor(PrintWriter out) {
-      this.out = out;
-   }
-   
-   
    private void indent() {
       for (int i = 0; i < depth; i++) out.write("   ");
    }
