@@ -1,4 +1,4 @@
-package symtable; 
+package symtable;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -26,8 +26,6 @@ public class VarTable {
        for(int i = 0; i < vars.size(); i++)
        {
           temp = vars.get(i);
-          //temp is a PVarDecl, but PVarDecl's extend Node, which has no "getID()"
-          // AVarDecl's do, but I dunno if that's what we want?
           put(temp.getId(),temp.getType()); //VarClashes will be done in the put method
        }
    }
