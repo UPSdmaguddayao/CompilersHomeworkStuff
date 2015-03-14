@@ -51,13 +51,12 @@ public class MethodInfo {
       formalCheck = new HashMap<String,Integer>();
       AFormal temp;
       String formalName;
-      System.out.println("HI IM DAISY");
       while(formals.size() != 0)
       {
         temp = (AFormal)formals.pop();
         formalName = temp.getId().getText();
         System.out.println(formalName);
-        if(formalCheck.containsKey(name))
+        if(formalCheck.containsKey(formalName))
         {
           String msg = formalName + " redeclared on line " + temp.getId().getLine();
           throw new VarClashException(msg);
