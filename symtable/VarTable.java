@@ -75,7 +75,7 @@ public class VarTable {
       for(Map.Entry<String,VarInfo> entry: table.entrySet())
       {
          String name = entry.toString().substring(0,entry.toString().indexOf("="));
-         System.out.println(entry + " "+ entry.getValue().toString());
+         System.out.println("   "+name+ " : "+ entry.getValue().toString());
       }
    }
    
