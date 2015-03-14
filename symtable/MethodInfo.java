@@ -48,6 +48,7 @@ public class MethodInfo {
       this.retType = retType;
       this.name = name;
       this.formals = formals;
+      this.locals = new VarTable(locals);
       formalCheck = new HashMap<String,Integer>();
       AFormal temp;
       String formalName;
@@ -55,8 +56,7 @@ public class MethodInfo {
       {
         temp = (AFormal)formals.pop();
         formalName = temp.getId().getText();
-        System.out.println(formalName);
-        if(formalCheck.containsKey(formalName))
+        if(formalCheck.containsKey(formalName) || this.locals.inside(formalName))
         {
           String msg = formalName + " redeclared on line " + temp.getId().getLine();
           throw new VarClashException(msg);
@@ -66,7 +66,7 @@ public class MethodInfo {
           formalCheck.put(formalName,0);
         }
       }
-      this.locals = new VarTable(locals);
+      
    }
 
    /* Accessors */   

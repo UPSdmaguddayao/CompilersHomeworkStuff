@@ -60,6 +60,15 @@ public class VarTable {
    
    /** Returns the number of entries in the table */
    public int size() { return table.size(); }
+
+   public boolean inside(String name)
+   {
+      if (table.containsKey(name))
+      {
+        return true;
+      }
+      else return false;
+   }
    
    /** Print out the entire contents of the table */
    public void dump() {

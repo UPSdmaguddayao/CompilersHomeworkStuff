@@ -10,7 +10,7 @@ class Errors {
     //int[] ints;  // Local var redeclaration.  Delete and retry
 
     // Formal param redeclaration (delete one to continue tests)
-    public int pointless(int arg, int arg) { //TODO: this error isn't caught
+    public int pointless(int arg) { 
         return 7;
     }
 
@@ -22,7 +22,7 @@ class Errors {
 
     // Formal clashes with local
     public int localFormalClash(int arg) {
-        boolean arg; //TODO:This error isn't caught
+        //int arg; //TODO:This error isn't caught
         return 7;
     }
 }
