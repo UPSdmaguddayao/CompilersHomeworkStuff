@@ -10,6 +10,8 @@ import minijava.node.PType;
 import minijava.node.PVarDecl;
 import minijava.node.TId;
 
+import java.lang.String;
+
 /** 
  * A VarTable records name and type information about a <i>collection</i> 
  * of variables.  An exception is thrown if we try to add a duplicate name.
@@ -27,8 +29,6 @@ public class VarTable {
        for(int i = 0; i < vars.size(); i++)
        {
           temp = (AVarDecl) vars.get(i);
-          //temp is a PVarDecl, but PVarDecl's extend Node, which has no "getID()"
-          // AVarDecl's do, but I dunno if that's what we want?
           put(temp.getId(),temp.getType()); //VarClashes will be done in the put method
        }
    }
@@ -74,6 +74,7 @@ public class VarTable {
    public void dump() {
       for(Map.Entry<String,VarInfo> entry: table.entrySet())
       {
+         String name = entry.toString().substring(0,entry.toString().indexOf("="));
          System.out.println(entry + " "+ entry.getValue().toString());
       }
    }
