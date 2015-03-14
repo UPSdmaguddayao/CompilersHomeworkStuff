@@ -81,14 +81,14 @@ public class MethodInfo {
     * necessary, and we'll want to see exactly what's in the VarTable.
     */
    public void dump() {
-      System.out.println("Name: " + name.toString());
-      System.out.println("Return Type: " + Types.toStr(retType));
-      System.out.println("Formals: ");
+      System.out.print(name.toString()+" (");
       for(int i = 0; i < formals.size(); i++)
       {
-        System.out.print(formals.get(i).toString() + " ");  //prints out the formals <---Note, pay attention to AFormals, not PFormals.  It has a toString Method
+        AFormal frm = (AFormal) formals.get(i);
+        //prints out the formals <---Note, pay attention to AFormal, not PFormal.  It has a toString Method
+        System.out.print(" "+frm.toString() + ":"+ frm.getType());
       }
-      System.out.print("Local variables: ");
+      System.out.println(" ) : " + Types.toStr(retType));
       locals.dump();
     }
    
