@@ -1,6 +1,7 @@
 package symtable; 
 
 import java.util.LinkedList;
+import java.util.HashMap;
 
 import minijava.node.AFormal;
 import minijava.node.PFormal;
@@ -21,7 +22,8 @@ public class MethodInfo {
    private LinkedList<PFormal> formals;
    private VarTable locals;     // Contains entries for parameters as well
    private ClassInfo enclosing; // The class in which method is actually defined
-            
+          
+  private HashMap<String,Integer> formalCheck;  
    /*
     * Stuff we'll add for the IRT phase
     *
@@ -46,6 +48,25 @@ public class MethodInfo {
       this.retType = retType;
       this.name = name;
       this.formals = formals;
+      formalCheck = new HashMap<String,Integer>();
+      AFormal temp;
+      String formalName;
+      System.out.println("HI IM DAISY");
+      while(formals.size() != 0)
+      {
+        temp = (AFormal)formals.pop();
+        formalName = temp.getId().getText();
+        System.out.println(formalName);
+        if(formalCheck.containsKey(name))
+        {
+          String msg = formalName + " redeclared on line " + temp.getId().getLine();
+          throw new VarClashException(msg);
+        }
+        else
+        {
+          formalCheck.put(formalName,0);
+        }
+      }
       this.locals = new VarTable(locals);
    }
 
@@ -62,8 +83,7 @@ public class MethodInfo {
     */
    public void dump() {
       System.out.println("Name: " + name.toString());
-      System.out.println("Return Type: " + Types.toStr(retType)); //use the type class to get the type 
-      //not sure if I'm doing this loop right -DJ
+      System.out.println("Return Type: " + Types.toStr(retType));
       System.out.println("Formals: ");
       for(int i = 0; i < formals.size(); i++)
       {

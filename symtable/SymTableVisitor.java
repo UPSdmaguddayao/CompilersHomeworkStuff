@@ -62,8 +62,6 @@ public class SymTableVisitor extends DepthFirstAdapter
    public void caseABaseClassDecl(ABaseClassDecl node)
    {
       inABaseClassDecl(node);
-      
-      //indent(); out.print("class ");
       if(node.getId() != null)
       {
          try
@@ -72,7 +70,8 @@ public class SymTableVisitor extends DepthFirstAdapter
          }
          catch (Exception e)
          {
-            System.err.println("FUCKED UP");
+            System.err.println(e);
+            System.exit(0);
          }
       }
       outABaseClassDecl(node);
@@ -89,7 +88,8 @@ public class SymTableVisitor extends DepthFirstAdapter
          }
          catch (Exception e)
          {
-            System.err.println("FUCKED UP");
+            System.err.println(e);
+            System.exit(0);
          }
       }
       outASubClassDecl(node);

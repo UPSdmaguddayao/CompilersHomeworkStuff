@@ -7,27 +7,27 @@ class Main {
 class Errors {
     int[] ints;
     int n;
-    int[] ints;  // Local var redeclaration.  Delete and retry
+    //int[] ints;  // Local var redeclaration.  Delete and retry
 
     // Formal param redeclaration (delete one to continue tests)
-    public int pointless(int arg, int arg) {
+    public int pointless(int arg, int arg) { //TODO: this error isn't caught
         return 7;
     }
 
     // Method redeclaration (no overloading in MiniJava)
     // Delete this method to continue tests
-    public int pointless(int i, int j, int k) {
+    /*public int pointless(int i, int j, int k) {
         return 7;
-    }
+    }*/
 
     // Formal clashes with local
     public int localFormalClash(int arg) {
-        boolean arg;
+        boolean arg; //TODO:This error isn't caught
         return 7;
     }
 }
 
 // Shouldn't be able to have TWO classes named Errors
-class Errors {
+/*class Errors {
     int foo;
-}
+}*/
