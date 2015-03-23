@@ -88,8 +88,8 @@ public class MethodInfo {
         //prints out the formals <---Note, pay attention to AFormal, not PFormal.  It has a toString Method
         System.out.print(" "+frm.toString() + ":"+ frm.getType());
       }
-      System.out.println(" ) : " + Types.toStr(retType));
-      locals.dump();
+      System.out.println(" ) : " + Types.toStr(retType)); 
+      locals.dump();  //local variables will dump
     }
    
    public void dumpIRT(boolean dot) {

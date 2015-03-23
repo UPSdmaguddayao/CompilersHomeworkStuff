@@ -74,7 +74,6 @@ public class MethodTable {
     * MethodInfo structures already know how to dump themselves.
     */
    public void dump() {
-      //TODO Fill in the guts of this method.
       for(Map.Entry<String,MethodInfo> entry: table.entrySet())
       {
          entry.getValue().dump();
