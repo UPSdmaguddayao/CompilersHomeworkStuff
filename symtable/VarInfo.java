@@ -1,7 +1,7 @@
 package symtable;
 
 import minijava.node.PType;
-//import Arch.Access;
+import IRTClasses.Arch.Access;
 
 /** 
  * VarInfo records information about a single local variable.  We need
@@ -18,9 +18,9 @@ public class VarInfo {
   
    /* 
     * Stuff to add once we got the the IRT phase
-
+	*/
    private Access acc;
    public Access getAccess() { return acc; }
    public void setAccess(Access a) { acc = a; }
-   */  
+    
 }

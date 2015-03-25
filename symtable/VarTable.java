@@ -41,6 +41,7 @@ public class VarTable {
          throw new VarClashException(msg); // There was a clash
       }
       table.put(name, new VarInfo(type));    // No clash; add new binding
+	  // TODO: Call VarInfo's setAccess() to set the offset?
    }
    
    /** Lookup and return the type of a variable */
