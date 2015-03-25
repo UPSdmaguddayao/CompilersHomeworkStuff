@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
+comment0.text=\r\n\ The\ main\ method\ creates\ an\ instance\ of\ SableCC's\ Parser\ that's\ fed\ tokens\r\n\ by\ an\ instance\ of\ SableCC's\ Lexer.\ \ (The\ Lexer\ takes\ its\ input\ from\ \r\n\ System.in.)\ \ The\ parser\ produces\ an\ AST,\ which\ is\ then\ traversed\ by\ the\r\n\ PrintVisitor.\r\n
+numComments=1
