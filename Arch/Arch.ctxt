@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Reg\ FP()
+comment0.text=Symbolic\ name\ for\ the\ frame\ pointer\ register
+comment1.params=
+comment1.target=Reg\ SP()
+comment1.text=Symbolic\ name\ for\ the\ stack\ pointer\ register
+comment2.params=
+comment2.target=Reg\ RA()
+comment2.text=Symbolic\ name\ for\ the\ return\ address\ register
+comment3.params=
+comment3.target=Reg\ SL()
+comment3.text=Symbolic\ name\ for\ the\ link\ ("this")\ register
+comment4.params=
+comment4.target=Reg\ RV()
+comment4.text=Symbolic\ name\ for\ the\ return\ value\ register
+comment5.params=
+comment5.target=Reg[]\ args()
+comment5.text=Return\ an\ array\ of\ symbolic\ names\ for\ argument\ registers
+comment6.params=
+comment6.target=Reg[]\ calleeSaved()
+comment7.params=
+comment7.target=Reg[]\ callerSaved()
+comment8.params=
+comment8.target=int\ wordSize()
+comment8.text=Return\ the\ number\ of\ bytes\ in\ a\ word\ for\ an\ architecture
+numComments=9

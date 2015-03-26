@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=java.lang.String\ toString()
+comment0.text=\r\n\ a\ printable\ representation\ of\ the\ label,\ for\ use\ in\ assembly\ \r\n\ language\ output.\r\n
+comment1.params=n
+comment1.target=Label(java.lang.String)
+comment1.text=\r\n\ Makes\ a\ new\ label\ that\ prints\ as\ "name".\r\n\ Warning\:\ avoid\ repeated\ calls\ to\ <tt>new\ Label(s)</tt>\ with\r\n\ the\ same\ name\ <tt>s</tt>.\r\n
+comment2.params=
+comment2.target=Label()
+comment2.text=\r\n\ Makes\ a\ new\ label\ with\ an\ arbitrary\ name.\r\n
+numComments=3

@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=h\ t
+comment0.target=LabelList(Label,\ LabelList)
+comment0.text=\r\n\ The\ constructor\ assembles\ a\ list\ of\ Label\ nodes\ by\ concatenating\r\n\ a\ single\ Label\ to\ an\ existing\ list\ of\ Labels.\r\n\ @param\ h\ \ The\ new\ head\ Label\r\n\ @param\ t\ \ An\ existing\ list\ of\ Labels\r\n
+numComments=1

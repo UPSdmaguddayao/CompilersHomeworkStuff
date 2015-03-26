@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Tree.Exp\ getTree()
+comment1.params=base
+comment1.target=Tree.Exp\ getTree(Tree.Exp)
+numComments=2

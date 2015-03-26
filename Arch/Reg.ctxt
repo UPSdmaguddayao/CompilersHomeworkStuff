@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=
+comment0.target=java.lang.String\ toString()
+comment0.text=\ \r\n\ toString\ returns\ the\ register's\ name,\ if\ it\ was\ given\ one,\ otherwise\r\n\ it\ returns\ a\ generic\ string\ describing\ the\ register\ by\ number.\r\n
+comment1.params=
+comment1.target=Reg()
+comment1.text=Create\ a\ numbered\ register
+comment2.params=name
+comment2.target=Reg(java.lang.String)
+comment2.text=Create\ a\ named\ register
+comment3.params=
+comment3.target=void\ reset()
+comment3.text=\ Reset\ the\ numbering\ scheme.\ \ Next\ register\ allocated\r\n\ will\ be\ 0\ again.\r\n
+comment4.params=o
+comment4.target=boolean\ equals(java.lang.Object)
+comment4.text=\ Returns\ true\ if\ the\ argument\ is\ a\ register\ with\ the\ same\r\n\ name\ as\ this\ one.\r\n
+numComments=5
