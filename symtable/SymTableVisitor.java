@@ -1,3 +1,5 @@
+// Initial (class level) register allocation (the stack stuff would take place here I think.
+// After doing this, we would know where to start out offsets?
 package symtable;
 
 import minijava.analysis.DepthFirstAdapter;
