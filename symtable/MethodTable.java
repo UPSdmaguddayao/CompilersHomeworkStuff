@@ -11,6 +11,8 @@ import minijava.node.PMethod;
 import minijava.node.PType;
 import minijava.node.PVarDecl;
 import minijava.node.TId;
+import minijava.node.AFormal;
+import Mips.InFrame;
 
 /** 
  * This class maintains information on a <i>collection</i> of methods.  It
@@ -19,6 +21,7 @@ import minijava.node.TId;
  */
 public class MethodTable {
    private HashMap<String, MethodInfo> table = new HashMap<String, MethodInfo>();
+   int offset;
    
    /** 
     * The constructor is passed a list of PMethod nodes as constructed
@@ -27,6 +30,7 @@ public class MethodTable {
     * @param methods A list of PMethod nodes
     */
    public MethodTable(LinkedList<PMethod> methods) throws Exception {
+	   offset = 8; //start after the $ra and $gp registers
     //Check AMethod
       String name = "";
       AMethod temp = null;
@@ -57,6 +61,13 @@ public class MethodTable {
         throw new MethodClashException(msg); // There was a clash
       }
       table.put(name, new MethodInfo(retType,id,formals,locals)); //this is where VarClashExceptions will occur
+	  //if we set access here, we can group formals and locals
+	  //we'd have to remove it from varTable
+	  /* for(PFormal arg : formals){
+		// find the pair which matches this arg
+		//set its access
+		((AFormal) arg).setAccess(new InFrame(offset++));
+	  } */
    }
    
    /** Lookup and return the MethodInfo for the specified method */
