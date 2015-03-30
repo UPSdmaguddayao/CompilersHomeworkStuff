@@ -21,12 +21,14 @@ import java.lang.String;
  */
 public class VarTable {
    HashMap<String, VarInfo> table = new HashMap<String, VarInfo>();
+   int offset;
    
    /** 
     * Constructor populates table from an initial list of VarDecls.
     * @param vars  A list of PVarDecl nodes from our AST.
      */
    public VarTable(LinkedList<PVarDecl> vars) throws VarClashException {
+	   offset = 8;	//start after the $ra and $gp registers
       AVarDecl temp = null;
        for(int i = 0; i < vars.size(); i++)
        {
@@ -43,8 +45,7 @@ public class VarTable {
          throw new VarClashException(msg); // There was a clash
       }
       table.put(name, new VarInfo(type));    // No clash; add new binding
-	  
-	 // table.get(name).setAccess(new InFrame(offset));
+	 table.get(name).setAccess(new InFrame(offset++));
    }
    
    /** Lookup and return the type of a variable */
