@@ -30,6 +30,7 @@ public class SymTableVisitor extends DepthFirstAdapter
    
    /** Constructor takes a PrintWriter, and stores in instance var. */
    public SymTableVisitor() {
+	   System.out.println("SymTableVisitor constructor");
       this.out = new PrintWriter(System.out);
    }
    
@@ -43,18 +44,20 @@ public class SymTableVisitor extends DepthFirstAdapter
     */
    public void caseAMainClassDecl(AMainClassDecl node)
    {
+	   System.out.println("Main");
       inAMainClassDecl(node);
       depth++;
       if(node.getId() != null)
       {  
-       /*  try
+         try
          {
          table.put(node.getId(),null,node.getVarDecl(), node.getMethod());
          }
          catch (ClassClashException e)
          {
-            System.err.println("FUCKED UP");
-         }*/
+            System.err.println(e);
+            System.exit(0);
+         }
       }
       depth--;
       outAMainClassDecl(node);
@@ -63,6 +66,7 @@ public class SymTableVisitor extends DepthFirstAdapter
    
    public void caseABaseClassDecl(ABaseClassDecl node)
    {
+	   System.out.println("Base");
       inABaseClassDecl(node);
       if(node.getId() != null)
       {
@@ -82,6 +86,7 @@ public class SymTableVisitor extends DepthFirstAdapter
    
    public void caseASubClassDecl(ASubClassDecl node)
    {
+	   System.out.println("Sub");
       inASubClassDecl(node);
       if(node.getId() != null)
       {

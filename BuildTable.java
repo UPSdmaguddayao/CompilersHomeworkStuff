@@ -23,6 +23,7 @@ public class BuildTable {
     * PrintVisitor.
     */
    public static void main(String[] args) {
+	   System.out.println("MAIN BuildTable");
       Parser parser = new Parser(
                           new Lexer(
                               new PushbackReader(
@@ -31,12 +32,15 @@ public class BuildTable {
       
       try {
          // Ask our parser object to do its thing.  Store the AST in start.
+	   System.out.println("BT Try PARSE");
          Start start = parser.parse();
+	   System.out.println("PARSE COMPLETE");
          
          // Retrieve the top-level Program node from start, and apply 
          // our symbol table visitor to it.
          start.getPProgram().apply(visitor);
       } catch (Exception e) {
+		  System.out.println("FAILED Try parse");
          e.printStackTrace();
          System.exit(-1);
       }
