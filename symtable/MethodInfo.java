@@ -20,6 +20,7 @@ public class MethodInfo {
    private PType retType;
    private TId name;
    private LinkedList<PFormal> formals;
+   private VarTable formalsTable;
    private VarTable locals;     // Contains entries for parameters as well
    private ClassInfo enclosing; // The class in which method is actually defined
           
@@ -48,6 +49,7 @@ public class MethodInfo {
       this.retType = retType;
       this.name = name;
       this.formals = formals;
+      this.formalsTable = new VarTable(formals); //MAY NOT be the right type
       this.locals = new VarTable(locals);
       formalCheck = new HashMap<String,Integer>();
       AFormal temp;
@@ -73,6 +75,7 @@ public class MethodInfo {
    public TId getName() { return name; }
    public PType getRetType() { return retType; }
    public LinkedList<PFormal> getFormals() { return formals; }
+   public VarTable getFormalsTable() { return formalsTable; }
    public VarTable getLocals() { return locals; }
    
    /** Print info about the return type, formals, and local variables.
