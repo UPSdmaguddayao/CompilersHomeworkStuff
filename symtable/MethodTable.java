@@ -63,11 +63,13 @@ public class MethodTable {
       table.put(name, new MethodInfo(retType,id,formals,locals)); //this is where VarClashExceptions will occur
 	  //if we set access here, we can group formals and locals
 	  //we'd have to remove it from varTable
-	  /* for(PFormal arg : formals){
+	  LinkedList<PFormal> frmls = table.get(name).getFormals();
+	  for(PFormal arg : frmls){
 		// find the pair which matches this arg
 		//set its access
-		((AFormal) arg).setAccess(new InFrame(offset++));
-	  } */
+		((AFormal) arg).setAccess(new InFrame(offset));
+		offset += 4;
+	  } 
    }
    
    /** Lookup and return the MethodInfo for the specified method */

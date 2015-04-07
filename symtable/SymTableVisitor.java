@@ -49,15 +49,16 @@ public class SymTableVisitor extends DepthFirstAdapter
       depth++;
       if(node.getId() != null)
       {  
-         try
+		 // TODO: getVarDecl()?
+         /* try
          {
-         table.put(node.getId(),null,node.getVarDecl(), node.getMethod());
+			table.put(node.getId(),null,node.getVarDecl(), node.getMethod());
          }
          catch (ClassClashException e)
          {
             System.err.println(e);
             System.exit(0);
-         }
+         } */
       }
       depth--;
       outAMainClassDecl(node);

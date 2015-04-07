@@ -45,7 +45,8 @@ public class VarTable {
          throw new VarClashException(msg); // There was a clash
       }
       table.put(name, new VarInfo(type));    // No clash; add new binding
-	 table.get(name).setAccess(new InFrame(offset++));	
+	 // table.get(name).setAccess(new InFrame(offset));	
+	 //offset += 4;
    }
    
    /** Lookup and return the type of a variable */
