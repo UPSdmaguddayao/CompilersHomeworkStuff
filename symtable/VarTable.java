@@ -24,6 +24,8 @@ public class VarTable {
    HashMap<String, VarInfo> table = new HashMap<String, VarInfo>();
    static int offset = 8;
    
+      public VarTable() throws VarClashException {}
+   
    /** 
     * Constructor populates table from an initial list of VarDecls.
     * @param vars  A list of PVarDecl nodes from our AST.
@@ -34,20 +36,6 @@ public class VarTable {
        for(int i = 0; i < vars.size(); i++)
        {
           temp = (AVarDecl) vars.get(i);
-          put(temp.getId(),temp.getType()); //VarClashes will be done in the put method
-       }
-   }
-   
-   /** 
-    * Constructor populates table from an initial list of VarDecls.
-    * @param vars  A list of PVarDecl nodes from our AST.
-     */
-   public VarTable(LinkedList<PFormal> frmls) throws VarClashException {
-	  //start after the $ra and $gp registers
-      AFormal temp = null;
-       for(int i = 0; i < vars.size(); i++)
-       {
-          temp = (AFormal) vars.get(i);
           put(temp.getId(),temp.getType()); //VarClashes will be done in the put method
        }
    }

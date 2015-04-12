@@ -19,8 +19,7 @@ public class MethodInfo {
    // ClassInfo parent;
    private PType retType;
    private TId name;
-   private LinkedList<PFormal> formals;
-   private VarTable formalsTable;
+   private VarTable formals;
    private VarTable locals;     // Contains entries for parameters as well
    private ClassInfo enclosing; // The class in which method is actually defined
           
@@ -44,19 +43,19 @@ public class MethodInfo {
     * @param locals   A list of the method's local variables
     */
    public MethodInfo(PType retType, TId name,
-                     LinkedList<PFormal> formals,
+                     LinkedList<PFormal> frmls,
                      LinkedList<PVarDecl> locals) throws VarClashException {
+						 
       this.retType = retType;
       this.name = name;
-      this.formals = formals;
-      this.formalsTable = new VarTable(formals); //MAY NOT be the right type
+      this.formals = new VarTable();
       this.locals = new VarTable(locals);
       formalCheck = new HashMap<String,Integer>();
       AFormal temp;
       String formalName;
-      while(formals.size() != 0)
+      while(frmls.size() != 0)
       {
-        temp = (AFormal)formals.pop();
+        temp = (AFormal)frmls.pop();
         formalName = temp.getId().getText();
         if(formalCheck.containsKey(formalName) || this.locals.inside(formalName))
         {
@@ -66,6 +65,7 @@ public class MethodInfo {
         else
         {
           formalCheck.put(formalName,0);
+		  formals.put(temp.getId(), temp.getType());
         }
       }
       
@@ -74,8 +74,7 @@ public class MethodInfo {
    /* Accessors */   
    public TId getName() { return name; }
    public PType getRetType() { return retType; }
-   public LinkedList<PFormal> getFormals() { return formals; }
-   public VarTable getFormalsTable() { return formalsTable; }
+   public VarTable getFormals() { return formals; }
    public VarTable getLocals() { return locals; }
    
    /** Print info about the return type, formals, and local variables.
@@ -84,14 +83,17 @@ public class MethodInfo {
     * necessary, and we'll want to see exactly what's in the VarTable.
     */
    public void dump() {
-      System.out.print(name.toString()+" (");
+      /*System.out.print(name.toString()+" (");
       for(int i = 0; i < formals.size(); i++)
       {
         AFormal frm = (AFormal) formals.get(i);
         //prints out the formals <---Note, pay attention to AFormal, not PFormal.  It has a toString Method
         System.out.print(" "+frm.toString() + ":"+ frm.getType());
       }
-      System.out.println(" ) : " + Types.toStr(retType)); 
+      System.out.println(" ) : " + Types.toStr(retType));  */
+	  System.out.print(name.toString()+" (");
+	  formals.dump();
+	  System.out.println(" ) : " + Types.toStr(retType));
       locals.dump();  //local variables will dump
     }
    
