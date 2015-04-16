@@ -12,6 +12,9 @@ import minijava.node.PFormal;
 import minijava.node.TId;
 
 import Mips.InFrame;
+import Arch.Reg;
+import Tree.Exp;
+import Tree.Print;
 
 import java.lang.String;
 
@@ -90,5 +93,10 @@ public class VarTable {
    
    public void dumpIRT(boolean dot) {
       //TODO Fill in the guts of this method -- but not until the IRT checkpoint
+      for(Map.Entry<String,VarInfo> entry: table.entrySet())
+      {
+			Exp e = entry.getValue().getAccess().getTree(new Reg("myReg"));
+			Print.prExp(e);
+      }
    }
 }
