@@ -20,6 +20,7 @@ import Mips.InFrame;
  * @author Brad Richards
  */
 public class MethodTable {
+   private final int FORMAL_MAX = 4;
    private HashMap<String, MethodInfo> table = new HashMap<String, MethodInfo>();
    int offset;
    
@@ -65,6 +66,10 @@ public class MethodTable {
 	  
 	  //Set the Accessors for FORMALS
 	  VarTable frmls = table.get(name).getFormals();
+	  
+	  //Restrict the number of args
+	  if (frmls.size() > FORMAL_MAX){ System.err.println("You can't have more than four arguments for a method!");}
+	  
 	  Set<String> fSet = frmls.getVarNames();
 	  for(String v : fSet){
 		// find the pair which matches this arg
