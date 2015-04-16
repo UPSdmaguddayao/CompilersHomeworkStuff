@@ -83,14 +83,6 @@ public class MethodInfo {
     * necessary, and we'll want to see exactly what's in the VarTable.
     */
    public void dump() {
-      /*System.out.print(name.toString()+" (");
-      for(int i = 0; i < formals.size(); i++)
-      {
-        AFormal frm = (AFormal) formals.get(i);
-        //prints out the formals <---Note, pay attention to AFormal, not PFormal.  It has a toString Method
-        System.out.print(" "+frm.toString() + ":"+ frm.getType());
-      }
-      System.out.println(" ) : " + Types.toStr(retType));  */
 	  System.out.print(name.toString()+" (");
 	  formals.dump();
 	  System.out.println(" ) : " + Types.toStr(retType));
@@ -99,5 +91,6 @@ public class MethodInfo {
    
    public void dumpIRT(boolean dot) {
       //TODO Fill in the guts of this method -- but once we get to the IRT checkpoint
+	  
    }
 }

@@ -1,4 +1,4 @@
-// Initial (class level) register allocation (the stack stuff would take place here I think.
+// Initial (class level) register allocation (the stack stuff) would take place here I think.
 // THIS IS PROBABLY where we should keep track of some kind of offset for all our tables to use
 package symtable;
 
@@ -30,7 +30,7 @@ public class SymTableVisitor extends DepthFirstAdapter
    
    /** Constructor takes a PrintWriter, and stores in instance var. */
    public SymTableVisitor() {
-	   System.out.println("SymTableVisitor constructor");
+	   // System.out.println("SymTableVisitor constructor");
       this.out = new PrintWriter(System.out);
    }
    

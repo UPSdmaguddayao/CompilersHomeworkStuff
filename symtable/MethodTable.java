@@ -5,13 +5,13 @@ import java.util.LinkedList;
 import java.util.Set;
 import java.util.Map;
 
+import minijava.node.PMethod;
 import minijava.node.AMethod;
 import minijava.node.PFormal;
-import minijava.node.PMethod;
+import minijava.node.AFormal;
 import minijava.node.PType;
 import minijava.node.PVarDecl;
 import minijava.node.TId;
-import minijava.node.AFormal;
 import Mips.InFrame;
 
 /** 
@@ -107,5 +107,10 @@ public class MethodTable {
    
    public void dumpIRT(boolean dot) {
       //TODO Fill in the guts of this method -- but not until IRT checkpoint
+	  
+      for(Map.Entry<String,MethodInfo> entry: table.entrySet())
+      {
+         entry.getValue().dumpIRT();
+      }
    }
 }
