@@ -112,10 +112,10 @@ public class MethodTable {
    
    public void dumpIRT(boolean dot) {
       //TODO Fill in the guts of this method -- but not until IRT checkpoint
-	  
+	  System.out.println("MethodTable: dumpIRT: ");
       for(Map.Entry<String,MethodInfo> entry: table.entrySet())
       {
-         entry.getValue().dumpIRT();
+         entry.getValue().dumpIRT(dot);
       }
    }
 }

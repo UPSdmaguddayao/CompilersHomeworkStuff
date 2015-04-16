@@ -76,5 +76,8 @@ public class ClassInfo {
 
     public void dumpIRT(boolean dot) {
         // TODO:  You'll complete this one on the next checkpoint
+		System.out.println("ClassInfo dumpIRT: ");
+        vars.dumpIRT(dot);
+        methods.dumpIRT(dot);
     } 
 }

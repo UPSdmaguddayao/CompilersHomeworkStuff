@@ -70,5 +70,10 @@ public class ClassTable {
     */
    public void dumpIRT(boolean dot) {
       //TODO Fill in the guts of this method -- but not until the IRT checkpoint.
+	  System.out.println("ClassTable dumpIRT: ");
+    for(Map.Entry<String,ClassInfo> entry: table.entrySet())
+      {
+         entry.getValue().dumpIRT(dot);
+      }
    }
 }
