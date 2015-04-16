@@ -31,7 +31,6 @@ public class MethodTable {
     * @param methods A list of PMethod nodes
     */
    public MethodTable(LinkedList<PMethod> methods) throws Exception {
-	   offset = 8; //start after the $ra and $gp registers
     //Check AMethod
       String name = "";
       AMethod temp = null;
@@ -57,6 +56,7 @@ public class MethodTable {
                    LinkedList<PFormal> formals,
                    LinkedList<PVarDecl> locals) throws Exception {
 					   
+	   offset = 8; //start after the $ra and $gp registers
       String name = id.getText();
        if (table.containsKey(name)) {
         String msg = name + " redeclared on line " + id.getLine();
