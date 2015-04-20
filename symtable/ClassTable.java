@@ -39,6 +39,7 @@ public class ClassTable {
         throw new ClassClashException(msg); // There was a clash
       }
       table.put(name, new ClassInfo(id,extendsId,vars,methods)); //creates a new classinfo and places it inside the table
+
    }
    
    public void putMain(String className, String methodName) throws Exception {
@@ -69,7 +70,6 @@ public class ClassTable {
     * @param dot	Are we generating output for dot?
     */
    public void dumpIRT(boolean dot) {
-      //TODO Fill in the guts of this method -- but not until the IRT checkpoint.
 	  System.out.println("ClassTable dumpIRT: ");
     for(Map.Entry<String,ClassInfo> entry: table.entrySet())
       {

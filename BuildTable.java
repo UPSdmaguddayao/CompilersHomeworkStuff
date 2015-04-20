@@ -47,6 +47,7 @@ public class BuildTable {
 	  
 	  System.out.println("\n\n*************  IRT  **************\n\n");
 	  //Then show the IRT
-      visitor.getTable().dumpIRT();
+      visitor.getTable().dumpIRT(true);
+System.out.println("It ended!");
    }
 }

@@ -13,6 +13,7 @@ import minijava.node.TId;
 
 import Mips.InFrame;
 import Arch.Reg;
+import Tree.REG;
 import Tree.Exp;
 import Tree.Print;
 
@@ -25,7 +26,7 @@ import java.lang.String;
  */
 public class VarTable {
    HashMap<String, VarInfo> table = new HashMap<String, VarInfo>();
-   static int offset = 8;
+   int offset = 8;
    
       public VarTable() throws VarClashException {}
    
@@ -41,6 +42,7 @@ public class VarTable {
           temp = (AVarDecl) vars.get(i);
           put(temp.getId(),temp.getType()); //VarClashes will be done in the put method
        }
+	offset = 8; //just in case.  Shoudn't need to worry about it though.
    }
    
    /** Allow the option of adding individual entries as well. */
@@ -51,8 +53,7 @@ public class VarTable {
          throw new VarClashException(msg); // There was a clash
       }
       table.put(name, new VarInfo(type));    // No clash; add new binding
-	 // table.get(name).setAccess(new InFrame(offset));	
-	 //offset += 4;
+      //table.get(name).setAccess(new InFrame(offset));
    }
    
    /** Lookup and return the type of a variable */
@@ -92,11 +93,15 @@ public class VarTable {
    }
    
    public void dumpIRT(boolean dot) {
-      //TODO Fill in the guts of this method -- but not until the IRT checkpoint
+	System.out.println("VarTable dumpIRT: ");
       for(Map.Entry<String,VarInfo> entry: table.entrySet())
       {
-			Exp e = entry.getValue().getAccess().getTree(new Reg("myReg"));
-			Print.prExp(e);
+	VarInfo vinf = entry.getValue();
+	InFrame a = (InFrame) vinf.getAccess();
+	Exp e = a.getTree(new REG (new Reg("myReg")));
+	//Print.prExp(e);
+	System.out.print("var: "+entry.getKey()+", ");
       }
+System.out.println("\n");
    }
 }

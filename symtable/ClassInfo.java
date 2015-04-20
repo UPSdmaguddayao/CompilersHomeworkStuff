@@ -1,10 +1,12 @@
 package symtable;
 
 import java.util.LinkedList;
+import java.util.Set;
 
 import minijava.node.PMethod;
 import minijava.node.PVarDecl;
 import minijava.node.TId;
+import Mips.InFrame;
 
 //import Mips.MipsArch;  // These two are needed for the IRT phase
 //import Arch.*;
@@ -47,9 +49,20 @@ public class ClassInfo {
     public ClassInfo(TId className, TId superClass,
     LinkedList<PVarDecl> vars,
     LinkedList<PMethod> methods) throws Exception { 
+        int offset = 8;
         this.className = className;
         this.superClass = superClass;
         this.vars = new VarTable(vars);           // Populate table from list
+
+        System.out.println("Setting Accesses for VarTable");
+        Set<String> fSet = this.vars.getVarNames();
+        for(String v : fSet){
+        // find the pair which matches this arg
+        //set its access
+        this.vars.getInfo(v).setAccess(new InFrame(offset));
+        offset += 4;
+      } 
+
         this.methods = new MethodTable(methods);  // Ditto.  All errors will pass through these two methods back up
     }
 
@@ -76,8 +89,10 @@ public class ClassInfo {
 
     public void dumpIRT(boolean dot) {
         // TODO:  You'll complete this one on the next checkpoint
-		System.out.println("ClassInfo dumpIRT: ");
+		System.out.println("\nClassInfo dumpIRT: "+className);
         vars.dumpIRT(dot);
+System.out.println("	vars done");
         methods.dumpIRT(dot);
+System.out.println("	meths done");
     } 
 }
