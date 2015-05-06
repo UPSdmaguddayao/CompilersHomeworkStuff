@@ -53,7 +53,8 @@ public class VarTable {
          throw new VarClashException(msg); // There was a clash
       }
       table.put(name, new VarInfo(type));    // No clash; add new binding
-      //table.get(name).setAccess(new InFrame(offset));
+     // table.get(name).setAccess(new InFrame(offset));
+    //  offset +=4;
    }
    
    /** Lookup and return the type of a variable */
@@ -100,7 +101,7 @@ public class VarTable {
 	InFrame a = (InFrame) vinf.getAccess();
 	Exp e = a.getTree(new REG (new Reg("myReg")));
 	//Print.prExp(e);
-	System.out.print("var: "+entry.getKey()+", ");
+	System.out.print("var: "+entry.getKey()+" at offset "+ a.getOffset()+ ", ");
       }
 System.out.println("\n");
    }

@@ -59,7 +59,7 @@ public class ClassInfo {
         for(String v : fSet){
         // find the pair which matches this arg
         //set its access
-        this.vars.getInfo(v).setAccess(new InFrame(offset));
+        this.vars.getInfo(v).setAccess(new InFrame(offset)); //set the access at the top level
         offset += 4;
       } 
 
