@@ -30,11 +30,11 @@ public class ClassInfo {
     We'll add these once we get to the IRT phase.  The IRTinfo object records
     the total number of words required for the instance variables in a class
     (including those we inherit).  
-
+	*/
     ClassIRTinfo info;
     public ClassIRTinfo getIRTinfo() { return info; }
     public void setIRTinfo(ClassIRTinfo i) { info = i; }
-     */
+     
 
     /** 
      * The constructor takes all info associated with a subclass definition,
