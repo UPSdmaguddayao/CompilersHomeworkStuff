@@ -78,7 +78,7 @@ public class MethodInfo {
       this.locals = new VarTable(locals);
     
     //Begin setting formals
-    Set<String> fSet = this.formals.getVarNames();
+   /* Set<String> fSet = this.formals.getVarNames();
     for(String v : fSet){
     // find the pair which matches this arg
     //set its access
@@ -93,7 +93,7 @@ public class MethodInfo {
     //set its access
     this.locals.getInfo(v).setAccess(new InFrame(offset));
     offset += 4;
-    } 
+    } */
       
    }
 

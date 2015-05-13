@@ -59,6 +59,7 @@ public class ClassInfo {
         for(String v : fSet){
         // find the pair which matches this arg
         //set its access
+            System.out.println("Setting instance variable");
         this.vars.getInfo(v).setAccess(new InFrame(offset)); //set the access at the top level
         offset += 4;
       } 
