@@ -65,7 +65,7 @@ public class MethodInfo {
         formalName = temp.getId().getText();
         if(formalCheck.containsKey(formalName) || this.locals.inside(formalName)) //checks both inside locals and inside formal check
         {
-          //String msg = formalName + " redeclared on line " + temp.getId().getLine();
+          String msg = formalName + " redeclared on line " + temp.getId().getLine();
           throw new VarClashException(msg);
         }
         else
@@ -73,12 +73,8 @@ public class MethodInfo {
           formalCheck.put(formalName,0); //place this into the checker for future use
 		      formals.put(temp.getId(), temp.getType()); //put it into the VarTable
           formals.getInfo(formalName).setAccess(new InFrame(offset)); //sets the offset
-          //System.out.println("Formal name: " + formalName +" is at offset: "+ offset);
           offset +=4;
         }
-
-        //InFrame a = (InFrame) formals.getInfo(formalName).getAccess();
-        //System.out.println(formalName + " " + a.getOffset());
       }
 
     Set<String> lSet = this.locals.getVarNames();
@@ -115,9 +111,9 @@ public class MethodInfo {
       formals.dump();
       System.out.println(" ) : " + Types.toStr(retType));
       //now print out the IRT for each formal and locals
-      System.out.println("Formals");
+      //System.out.println("Formals");
       formals.dumpIRT(dot);
-      System.out.println("Locals");
+      //System.out.println("Locals");
       locals.dumpIRT(dot);
 
 	  

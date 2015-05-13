@@ -100,7 +100,7 @@ public class VarTable {
 	       InFrame a = (InFrame) vinf.getAccess();
 	Exp e = a.getTree(new REG (new Reg("base")));
 	Print.prExp(e);
-	System.out.print("var: "+entry.getKey()+" at offset "+ a.getOffset()+ ", ");
+	//System.out.print("var: "+entry.getKey()+" at offset "+ a.getOffset()+ ", ");
   System.out.println("\n");
       }
    }
