@@ -65,27 +65,6 @@ public class MethodTable {
         throw new MethodClashException(msg); // There was a clash
       }
       table.put(name, new MethodInfo(retType,id,formals,locals)); //this is where VarClashExceptions will occur
-	  
-	  //Set the Accessors for FORMALS
-	  VarTable frmls = table.get(name).getFormals();
-	
-	  Set<String> fSet = frmls.getVarNames();
-	  for(String v : fSet){
-		// find the pair which matches this arg
-		//set its access
-		frmls.getInfo(v).setAccess(new InFrame(offset));
-		offset += 4;
-	  } 
-	  
-	  //Set the Accessors for LOCALS
-	  VarTable lcls = table.get(name).getLocals();
-	  Set<String> lSet = lcls.getVarNames();
-	  for(String v : lSet){
-		// find the pair which matches this arg
-		//set its access
-		lcls.getInfo(v).setAccess(new InFrame(offset));
-		offset += 4;
-	  } 
    }
    
    /** Lookup and return the MethodInfo for the specified method */

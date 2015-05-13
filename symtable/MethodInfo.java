@@ -61,25 +61,24 @@ public class MethodInfo {
       System.out.println(name.getText());
       while(frmls.size() != 0)
       {
-        temp = (AFormal)frmls.removeFirst(); //looks at the beginning of the list
-        //for some reason, arg2 will always say it's at offset 8 instead of arg1.  Need to figure out why.  Until then, at least using this makes the offsets in the right positions.
+        temp = (AFormal)frmls.removeFirst(); //looks at the beginning of the list so arg 1 comes before arg 2 when compiling
         formalName = temp.getId().getText();
-        if(formalCheck.containsKey(formalName) || this.locals.inside(formalName))
+        if(formalCheck.containsKey(formalName) || this.locals.inside(formalName)) //checks both inside locals and inside formal check
         {
-          String msg = formalName + " redeclared on line " + temp.getId().getLine();
+          //String msg = formalName + " redeclared on line " + temp.getId().getLine();
           throw new VarClashException(msg);
         }
         else
         {
-          formalCheck.put(formalName,0);
-		      formals.put(temp.getId(), temp.getType());
+          formalCheck.put(formalName,0); //place this into the checker for future use
+		      formals.put(temp.getId(), temp.getType()); //put it into the VarTable
           formals.getInfo(formalName).setAccess(new InFrame(offset)); //sets the offset
-          System.out.println("Formal name: " + formalName +" is at offset: "+ offset);
+          //System.out.println("Formal name: " + formalName +" is at offset: "+ offset);
           offset +=4;
         }
 
-        InFrame a = (InFrame) formals.getInfo(formalName).getAccess();
-        System.out.println(formalName + " " + a.getOffset());
+        //InFrame a = (InFrame) formals.getInfo(formalName).getAccess();
+        //System.out.println(formalName + " " + a.getOffset());
       }
 
     Set<String> lSet = this.locals.getVarNames();
@@ -87,7 +86,7 @@ public class MethodInfo {
     // find the pair which matches this arg
     //set its access
     this.locals.getInfo(v).setAccess(new InFrame(offset));
-    System.out.println(v +" has an offset at "+ offset);
+    //System.out.println(v +" has an offset at "+ offset);
     offset += 4;
     } 
       
@@ -116,7 +115,9 @@ public class MethodInfo {
       formals.dump();
       System.out.println(" ) : " + Types.toStr(retType));
       //now print out the IRT for each formal and locals
+      System.out.println("Formals");
       formals.dumpIRT(dot);
+      System.out.println("Locals");
       locals.dumpIRT(dot);
 
 	  
