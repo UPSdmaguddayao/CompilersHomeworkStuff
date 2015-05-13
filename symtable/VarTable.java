@@ -26,6 +26,7 @@ import java.lang.String;
  */
 public class VarTable {
    HashMap<String, VarInfo> table = new HashMap<String, VarInfo>();
+   int offset = 8;
    
       public VarTable() throws VarClashException {}
    
@@ -35,7 +36,6 @@ public class VarTable {
      */
    public VarTable(LinkedList<PVarDecl> vars) throws VarClashException {
 		//start after formals (max +24)
-    int offset = 0; //grabs the last offset from formals and starts there
       AVarDecl temp = null;
        for(int i = 0; i < vars.size(); i++)
        {
@@ -94,16 +94,15 @@ public class VarTable {
    }
    
    public void dumpIRT(boolean dot) {
-	//System.out.println("VarTable dumpIRT: ");
+	System.out.println("VarTable dumpIRT: ");
       for(Map.Entry<String,VarInfo> entry: table.entrySet())
       {
-        String name = entry.toString().substring(0,entry.toString().indexOf("="));
 	VarInfo vinf = entry.getValue();
 	InFrame a = (InFrame) vinf.getAccess();
-	Exp e = a.getTree(new REG (new Reg("$myReg")));
-  System.out.println("  " +name + " : " + entry.getValue().toString());
-	Print.prExp(e); //uses this to print out the IRT for variables
-  System.out.println("\n"); //helps with spacing
+	Exp e = a.getTree(new REG (new Reg("myReg")));
+	//Print.prExp(e);
+	System.out.print("var: "+entry.getKey()+" at offset "+ a.getOffset()+ ", ");
       }
+System.out.println("\n");
    }
 }

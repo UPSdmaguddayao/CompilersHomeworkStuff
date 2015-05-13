@@ -20,7 +20,7 @@ import Mips.InFrame;
  * @author Brad Richards
  */
 public class MethodTable {
-   //private final int FORMAL_MAX = 4;
+   private final int FORMAL_MAX = 4;
    private HashMap<String, MethodInfo> table = new HashMap<String, MethodInfo>();
    int offset;
    
@@ -63,7 +63,7 @@ public class MethodTable {
         throw new MethodClashException(msg); // There was a clash
       }
       table.put(name, new MethodInfo(retType,id,formals,locals)); //this is where VarClashExceptions will occur
-	  /*
+	  
 	  //Set the Accessors for FORMALS
 	  VarTable frmls = table.get(name).getFormals();
 	  
@@ -86,7 +86,7 @@ public class MethodTable {
 		//set its access
 		lcls.getInfo(v).setAccess(new InFrame(offset));
 		offset += 4;
-	  } */
+	  } 
    }
    
    /** Lookup and return the MethodInfo for the specified method */
