@@ -71,8 +71,16 @@ public class ClassTable {
     */
    public void dumpIRT(boolean dot) {
 	  System.out.println("ClassTable dumpIRT: ");
+    ClassInfo check;
     for(Map.Entry<String,ClassInfo> entry: table.entrySet())
-      {
+      {/*
+        check = entry.getValue();
+        if(check.getSuper()!= null)
+        {
+          entry.getValue().setIRTinfo(
+            table.getVal
+            );
+        }*/
          entry.getValue().dumpIRT(dot);
       }
    }

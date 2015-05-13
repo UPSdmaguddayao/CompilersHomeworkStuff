@@ -7,6 +7,7 @@ import minijava.node.PMethod;
 import minijava.node.PVarDecl;
 import minijava.node.TId;
 import Mips.InFrame;
+import Arch.Reg;
 
 //import Mips.MipsArch;  // These two are needed for the IRT phase
 //import Arch.*;
@@ -62,8 +63,8 @@ public class ClassInfo {
         this.vars.getInfo(v).setAccess(new InFrame(offset)); //set the access at the top level
         offset += 4;
       } 
-
         this.methods = new MethodTable(methods);  // Ditto.  All errors will pass through these two methods back up
+        setIRTinfo(new ClassIRTinfo(new Reg("$dest"),vars.size()));
     }
 
     public TId getName() { return className; }
@@ -88,7 +89,6 @@ public class ClassInfo {
     } 
 
     public void dumpIRT(boolean dot) {
-        // TODO:  You'll complete this one on the next checkpoint
         System.out.println("-------------------------------------\nClassInfo dumpIRT:" +
             className.toString()); 
         if(superClass != null)
@@ -96,6 +96,12 @@ public class ClassInfo {
             System.out.print(" Extends: " + superClass.toString()); 
         }
         System.out.println("\n-------------------------------------" );
+
+        System.out.println("Constructor fragment:");
+        //Constructor Stuff
+        info.dumpIRT(dot);
+
+        System.out.println("-------------------------------------" );
         System.out.println("Instance var accessors:");
         vars.dumpIRT(dot);
 
