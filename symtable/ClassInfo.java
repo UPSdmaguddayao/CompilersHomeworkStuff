@@ -49,7 +49,7 @@ public class ClassInfo {
     public ClassInfo(TId className, TId superClass,
     LinkedList<PVarDecl> vars,
     LinkedList<PMethod> methods) throws Exception { 
-        int offset = 8;
+        int offset = 0;
         this.className = className;
         this.superClass = superClass;
         this.vars = new VarTable(vars);           // Populate table from list
@@ -88,11 +88,17 @@ public class ClassInfo {
     } 
 
     public void dumpIRT(boolean dot) {
-        // TODO:  You'll complete this one on the next checkpoint
-		System.out.println("\nClassInfo dumpIRT: "+className);
+		//System.out.println("\nClassInfo dumpIRT: "+className);
+        System.out.println("-------------------------------------\nClassInfo dumpIRT: " +
+            className.toString()); 
+        if(superClass != null)
+        {
+            System.out.print(" Extends: " + superClass.toString()); 
+        }
+        System.out.println("\n-------------------------------------" );
+        System.out.println("     Instance var accessors");
         vars.dumpIRT(dot);
-System.out.println("	vars done");
+        System.out.println("    Method Allocation");
         methods.dumpIRT(dot);
-System.out.println("	meths done");
     } 
 }

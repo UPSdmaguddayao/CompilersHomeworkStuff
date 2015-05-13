@@ -1,13 +1,18 @@
 package symtable; 
 
-import java.util.LinkedList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.Map;
 
-import minijava.node.AFormal;
+import minijava.node.PMethod;
+import minijava.node.AMethod;
 import minijava.node.PFormal;
+import minijava.node.AFormal;
 import minijava.node.PType;
 import minijava.node.PVarDecl;
 import minijava.node.TId;
+import Mips.InFrame;
 
 /** 
  * A MethodInfo instance records information about a single MiniJava method.
@@ -22,6 +27,7 @@ public class MethodInfo {
    private VarTable formals;
    private VarTable locals;     // Contains entries for parameters as well
    private ClassInfo enclosing; // The class in which method is actually defined
+   private final int FORMAL_MAX = 4;
           
   private HashMap<String,Integer> formalCheck;  
    /*
@@ -44,16 +50,17 @@ public class MethodInfo {
     */
    public MethodInfo(PType retType, TId name,
                      LinkedList<PFormal> frmls,
-                     LinkedList<PVarDecl> locals) throws VarClashException {
-						 
+                     LinkedList<PVarDecl> locals) throws VarClashException 
+  { //formals are parameters.  Locals are local variables in the methods
+			int offset = 8;
       this.retType = retType;
       this.name = name;
       this.formals = new VarTable();
-      this.locals = new VarTable(locals);
       formalCheck = new HashMap<String,Integer>();
       AFormal temp;
       String formalName;
-      while(frmls.size() != 0)
+      if (frmls.size() > FORMAL_MAX){ System.err.println("You can't have more than four arguments for a method!");}
+      while(frmls.size() != 0) //putting formals in first
       {
         temp = (AFormal)frmls.pop();
         formalName = temp.getId().getText();
@@ -65,9 +72,28 @@ public class MethodInfo {
         else
         {
           formalCheck.put(formalName,0);
-		  formals.put(temp.getId(), temp.getType());
+		      formals.put(temp.getId(), temp.getType());
         }
       }
+      this.locals = new VarTable(locals);
+    
+    //Begin setting formals
+    Set<String> fSet = this.formals.getVarNames();
+    for(String v : fSet){
+    // find the pair which matches this arg
+    //set its access
+    this.formals.getInfo(v).setAccess(new InFrame(offset));
+    offset += 4;
+    } 
+    
+    //Set the Accessors for LOCALS
+    Set<String> lSet = this.locals.getVarNames();
+    for(String v : lSet){
+    // find the pair which matches this arg
+    //set its access
+    this.locals.getInfo(v).setAccess(new InFrame(offset));
+    offset += 4;
+    } 
       
    }
 

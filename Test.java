@@ -7,7 +7,6 @@ class Test {
 class Super {
    int a;
    int[] array;
-   int b;
    
    public int foo(Super arg1, int[] arg2) {
       int i;
