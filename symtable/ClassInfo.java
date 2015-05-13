@@ -89,9 +89,16 @@ public class ClassInfo {
 
     public void dumpIRT(boolean dot) {
         // TODO:  You'll complete this one on the next checkpoint
-		System.out.println("\nClassInfo dumpIRT: "+className);
+        System.out.println("-------------------------------------\nClassInfo dumpIRT:" +
+            className.toString()); 
+        if(superClass != null)
+        {
+            System.out.print(" Extends: " + superClass.toString()); 
+        }
+        System.out.println("\n-------------------------------------" );
+        System.out.println("Instance var accessors:");
         vars.dumpIRT(dot);
-System.out.println("	vars done");
+
         methods.dumpIRT(dot);
 System.out.println("	meths done");
     } 

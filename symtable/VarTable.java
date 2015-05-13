@@ -97,12 +97,14 @@ public class VarTable {
 	System.out.println("VarTable dumpIRT: ");
       for(Map.Entry<String,VarInfo> entry: table.entrySet())
       {
+  String name = entry.toString().substring(0,entry.toString().indexOf("="));
+  System.out.println("   "+name+ " : "+ entry.getValue().toString());
 	VarInfo vinf = entry.getValue();
 	InFrame a = (InFrame) vinf.getAccess();
-	Exp e = a.getTree(new REG (new Reg("myReg")));
-	//Print.prExp(e);
-	System.out.print("var: "+entry.getKey()+" at offset "+ a.getOffset()+ ", ");
+	Exp e = a.getTree(new REG (new Reg("$myReg")));
+	Print.prExp(e);
+	//System.out.print("var: "+entry.getKey()+" at offset "+ a.getOffset()+ ", ");
+  System.out.println("\n");
       }
-System.out.println("\n");
    }
 }
