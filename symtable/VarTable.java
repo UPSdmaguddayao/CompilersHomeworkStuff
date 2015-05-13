@@ -52,8 +52,6 @@ public class VarTable {
          throw new VarClashException(msg); // There was a clash
       }
       table.put(name, new VarInfo(type));    // No clash; add new binding
-     // table.get(name).setAccess(new InFrame(offset));
-    //  offset +=4;
    }
    
    /** Lookup and return the type of a variable */
@@ -85,7 +83,7 @@ public class VarTable {
    
    /** Print out the entire contents of the table */
    public void dump() {
-      for(Map.Entry<String,VarInfo> entry: table.entrySet())
+      for(Map.Entry<String,VarInfo> entry: table.entrySet()) //is there a better way than using this?  This doesn't account any order sadly
       {
          String name = entry.toString().substring(0,entry.toString().indexOf("="));
          System.out.print(" "+name+ " : "+ entry.getValue().toString());
@@ -96,13 +94,13 @@ public class VarTable {
 	//System.out.println("VarTable dumpIRT: ");
       for(Map.Entry<String,VarInfo> entry: table.entrySet())
       {
-  String name = entry.toString().substring(0,entry.toString().indexOf("="));
-  System.out.println("   "+name+ " : "+ entry.getValue().toString());
-	VarInfo vinf = entry.getValue();
-	InFrame a = (InFrame) vinf.getAccess();
+        String name = entry.toString().substring(0,entry.toString().indexOf("="));
+        VarInfo vinf = entry.getValue();
+        System.out.println("   "+name+ " : "+ vinf.toString());
+	       InFrame a = (InFrame) vinf.getAccess();
 	Exp e = a.getTree(new REG (new Reg("base")));
 	Print.prExp(e);
-	//System.out.print("var: "+entry.getKey()+" at offset "+ a.getOffset()+ ", ");
+	System.out.print("var: "+entry.getKey()+" at offset "+ a.getOffset()+ ", ");
   System.out.println("\n");
       }
    }

@@ -70,7 +70,7 @@ public class ClassTable {
     * @param dot	Are we generating output for dot?
     */
    public void dumpIRT(boolean dot) {
-	  System.out.println("ClassTable dumpIRT: ");
+	  //System.out.println("ClassTable dumpIRT: ");
     ClassInfo check;
     ClassInfo superClass;
     for(Map.Entry<String,ClassInfo> entry: table.entrySet())

@@ -58,9 +58,11 @@ public class MethodInfo {
       formalCheck = new HashMap<String,Integer>();
       AFormal temp;
       String formalName;
+      System.out.println(name.getText());
       while(frmls.size() != 0)
       {
-        temp = (AFormal)frmls.pop();
+        temp = (AFormal)frmls.removeFirst(); //looks at the beginning of the list
+        //for some reason, arg2 will always say it's at offset 8 instead of arg1.  Need to figure out why.  Until then, at least using this makes the offsets in the right positions.
         formalName = temp.getId().getText();
         if(formalCheck.containsKey(formalName) || this.locals.inside(formalName))
         {
@@ -71,9 +73,13 @@ public class MethodInfo {
         {
           formalCheck.put(formalName,0);
 		      formals.put(temp.getId(), temp.getType());
-          formals.getInfo(formalName).setAccess((new InFrame(offset))); //sets the offset
+          formals.getInfo(formalName).setAccess(new InFrame(offset)); //sets the offset
+          System.out.println("Formal name: " + formalName +" is at offset: "+ offset);
           offset +=4;
         }
+
+        InFrame a = (InFrame) formals.getInfo(formalName).getAccess();
+        System.out.println(formalName + " " + a.getOffset());
       }
 
     Set<String> lSet = this.locals.getVarNames();
@@ -81,6 +87,7 @@ public class MethodInfo {
     // find the pair which matches this arg
     //set its access
     this.locals.getInfo(v).setAccess(new InFrame(offset));
+    System.out.println(v +" has an offset at "+ offset);
     offset += 4;
     } 
       
@@ -105,7 +112,6 @@ public class MethodInfo {
     }
    
    public void dumpIRT(boolean dot) {
-      //TODO Fill in the guts of this method -- but once we get to the IRT checkpoint
       System.out.print(name.toString()+" (");
       formals.dump();
       System.out.println(" ) : " + Types.toStr(retType));
