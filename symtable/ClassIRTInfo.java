@@ -19,6 +19,7 @@ public class ClassIRTinfo {
     public ClassIRTinfo(Reg register, int inVars)
     {
         MOVE[] moveArray;
+        instanceVars = inVars;
         if(inVars == 0)
         {
             ExpressionTree = new ESEQ(
@@ -37,57 +38,21 @@ public class ClassIRTinfo {
             }
 
             MOVE allocate = new MOVE(new REG(register),new CALL(new NAME(new Label("malloc")),new ExpList(new CONST(offSet),null))); //create a move to use in the overall sequence
-            if(inVars == 1) //force this for now.  Try some auto-generation later
-            {
-                ExpressionTree = new ESEQ(
-                                            new SEQ(
-                                                allocate,moveArray[0]
-                                                ),
-                                            new REG(register)
-                                        );
-            }
-            else if (inVars ==2 )
-            {
-                ExpressionTree = new ESEQ(
-                                            new SEQ(
-                                                new SEQ(
-                                                    allocate,moveArray[0]
-                                                    ),
-                                            moveArray[1]),
-                                            new REG(register)
-                                        );
-            }
-            else if (inVars ==3 )
-            {
-                ExpressionTree = new ESEQ(
-                                            new SEQ(
-                                                new SEQ(
-                                                    new SEQ(
-                                                        allocate,moveArray[0]
-                                                        ),
-                                                moveArray[1]),
-                                            moveArray[2]),
-                                            new REG(register)
-                                        );
-            }
-            else if (inVars ==4 )
-            {
-                ExpressionTree = new ESEQ(
-                                            new SEQ(
-                                                new SEQ(
-                                                    new SEQ(
-                                                        new SEQ(
-                                                            allocate,moveArray[0]
-                                                            ),
-                                                    moveArray[1]),
-                                                moveArray[2]),
-                                            moveArray[3]),
-                                            new REG(register)
-                                        );
-            }
+            ExpressionTree = new ESEQ(createSeq(allocate,moveArray,inVars),new REG(register));
         }
     }
 
+    public SEQ createSeq(MOVE allocate, MOVE[] array, int size)
+    {
+        if(size == 1)
+        {
+            return new SEQ(allocate,array[size-1]); //base case
+        }
+        else
+        {
+            return new SEQ(createSeq(allocate,array,size-1),array[size-1]); //recursion
+        }
+    }
     public MOVE createMem(Reg register, int offSet)
     {
         return new MOVE(new MEM(new BINOP(BINOP.PLUS, new REG(register),new CONST(offSet))),new CONST(0));

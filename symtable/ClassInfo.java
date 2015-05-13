@@ -54,17 +54,22 @@ public class ClassInfo {
         this.className = className;
         this.superClass = superClass;
         this.vars = new VarTable(vars);           // Populate table from list
+        allocateInstanceOffsets(offset); //initial run.  We'll fix this in a second runthrough.
+        this.methods = new MethodTable(methods);  // Ditto.  All errors will pass through these two methods back up
+    }
 
+    public void allocateInstanceOffsets(int offSet)
+    {
         System.out.println("Setting Accesses for VarTable");
+        int offset = offSet;
         Set<String> fSet = this.vars.getVarNames();
         for(String v : fSet){
         // find the pair which matches this arg
         //set its access
-        this.vars.getInfo(v).setAccess(new InFrame(offset)); //set the access at the top level
+        vars.getInfo(v).setAccess(new InFrame(offset)); //set the access at the top level
         offset += 4;
       } 
-        this.methods = new MethodTable(methods);  // Ditto.  All errors will pass through these two methods back up
-        setIRTinfo(new ClassIRTinfo(new Reg("$dest"),vars.size()));
+        setIRTinfo(new ClassIRTinfo(new Reg("$dest"),(offset/4)));
     }
 
     public TId getName() { return className; }
@@ -89,7 +94,7 @@ public class ClassInfo {
     } 
 
     public void dumpIRT(boolean dot) {
-        System.out.println("-------------------------------------\nClassInfo dumpIRT:" +
+        System.out.print("-------------------------------------\nClassInfo dumpIRT:" +
             className.toString()); 
         if(superClass != null)
         {
@@ -106,6 +111,6 @@ public class ClassInfo {
         vars.dumpIRT(dot);
 
         methods.dumpIRT(dot);
-System.out.println("	meths done");
+        //System.out.println("	meths done");
     } 
 }
