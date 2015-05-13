@@ -49,7 +49,7 @@ public class ClassInfo {
     public ClassInfo(TId className, TId superClass,
     LinkedList<PVarDecl> vars,
     LinkedList<PMethod> methods) throws Exception { 
-        int offset = 8;
+        int offset = 0;
         this.className = className;
         this.superClass = superClass;
         this.vars = new VarTable(vars);           // Populate table from list

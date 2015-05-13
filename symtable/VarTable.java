@@ -26,7 +26,6 @@ import java.lang.String;
  */
 public class VarTable {
    HashMap<String, VarInfo> table = new HashMap<String, VarInfo>();
-   int offset = 8;
    
       public VarTable() throws VarClashException {}
    
@@ -41,8 +40,8 @@ public class VarTable {
        {
           temp = (AVarDecl) vars.get(i);
           put(temp.getId(),temp.getType()); //VarClashes will be done in the put method
+          //any offsets will be handled at the top level
        }
-	offset = 8; //just in case.  Shoudn't need to worry about it though.
    }
    
    /** Allow the option of adding individual entries as well. */
@@ -89,12 +88,12 @@ public class VarTable {
       for(Map.Entry<String,VarInfo> entry: table.entrySet())
       {
          String name = entry.toString().substring(0,entry.toString().indexOf("="));
-         System.out.println("   "+name+ " : "+ entry.getValue().toString());
+         System.out.print(" "+name+ " : "+ entry.getValue().toString());
       }
    }
    
    public void dumpIRT(boolean dot) {
-	System.out.println("VarTable dumpIRT: ");
+	//System.out.println("VarTable dumpIRT: ");
       for(Map.Entry<String,VarInfo> entry: table.entrySet())
       {
   String name = entry.toString().substring(0,entry.toString().indexOf("="));

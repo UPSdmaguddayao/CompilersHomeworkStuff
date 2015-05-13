@@ -1,13 +1,18 @@
 package symtable; 
 
-import java.util.LinkedList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.Map;
 
-import minijava.node.AFormal;
+import minijava.node.PMethod;
+import minijava.node.AMethod;
 import minijava.node.PFormal;
+import minijava.node.AFormal;
 import minijava.node.PType;
 import minijava.node.PVarDecl;
 import minijava.node.TId;
+import Mips.InFrame;
 
 /** 
  * A MethodInfo instance records information about a single MiniJava method.
@@ -45,11 +50,11 @@ public class MethodInfo {
    public MethodInfo(PType retType, TId name,
                      LinkedList<PFormal> frmls,
                      LinkedList<PVarDecl> locals) throws VarClashException {
-						 
+			int offset = 8;		 
       this.retType = retType;
       this.name = name;
       this.formals = new VarTable();
-      this.locals = new VarTable(locals);
+      this.locals = new VarTable(locals); //creates locals
       formalCheck = new HashMap<String,Integer>();
       AFormal temp;
       String formalName;
@@ -65,9 +70,19 @@ public class MethodInfo {
         else
         {
           formalCheck.put(formalName,0);
-		  formals.put(temp.getId(), temp.getType());
+		      formals.put(temp.getId(), temp.getType());
+          formals.getInfo(formalName).setAccess((new InFrame(offset))); //sets the offset
+          offset +=4;
         }
       }
+
+    Set<String> lSet = this.locals.getVarNames();
+    for(String v : lSet){
+    // find the pair which matches this arg
+    //set its access
+    this.locals.getInfo(v).setAccess(new InFrame(offset));
+    offset += 4;
+    } 
       
    }
 
@@ -91,6 +106,13 @@ public class MethodInfo {
    
    public void dumpIRT(boolean dot) {
       //TODO Fill in the guts of this method -- but once we get to the IRT checkpoint
+      System.out.print(name.toString()+" (");
+      formals.dump();
+      System.out.println(" ) : " + Types.toStr(retType));
+      //now print out the IRT for each formal and locals
+      formals.dumpIRT(dot);
+      locals.dumpIRT(dot);
+
 	  
    }
 }

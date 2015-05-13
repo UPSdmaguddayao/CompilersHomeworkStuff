@@ -55,7 +55,9 @@ public class MethodTable {
    public void put(TId id, PType retType, 
                    LinkedList<PFormal> formals,
                    LinkedList<PVarDecl> locals) throws Exception {
-					   
+
+    //restrict argument
+		 if (formals.size() > FORMAL_MAX){ System.err.println("You can't have more than four arguments for a method!");}
 	   offset = 8; //start after the $ra and $gp registers
       String name = id.getText();
        if (table.containsKey(name)) {
@@ -66,10 +68,7 @@ public class MethodTable {
 	  
 	  //Set the Accessors for FORMALS
 	  VarTable frmls = table.get(name).getFormals();
-	  
-	  //Restrict the number of args
-	  if (frmls.size() > FORMAL_MAX){ System.err.println("You can't have more than four arguments for a method!");}
-	  
+	
 	  Set<String> fSet = frmls.getVarNames();
 	  for(String v : fSet){
 		// find the pair which matches this arg
